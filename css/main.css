@@ -37,9 +37,6 @@ div {
     border: 1px solid black;
     padding-inline: 1em;
 }
-.center {
-    text-align: center;
-}
 table {
     border-collapse: collapse;
 }
@@ -53,4 +50,7 @@ th {
     text-align: left;
     padding: 8px;
     background-color: gainsboro;
+}
+.center {
+    text-align: center;
 }
