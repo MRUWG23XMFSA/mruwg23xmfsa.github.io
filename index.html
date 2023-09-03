@@ -5,12 +5,6 @@
         <meta charset="UTF-8">
         <base target="_blank">
         <link rel="stylesheet" href="css/main.css">
-        <script>
-            if (document.activeElement == 0) {
-                event.preventDefault(); // Motverka sidinteraktion
-                document.write("PENIS!");
-            }
-        </script>
     </head>
     <body>
         <div class="center">
@@ -31,7 +25,7 @@
             Kodlabbet är för övrigt en jättegammal sida, vilket förvisso inte säger så mycket, men de kallar dokumentationen av simple.js för "API", så deras leksaks-script får inte äran att sponsra min kod.
             Det enda som är ballt med Kodlabbets script sources är att man på enkel väg kan <a href="http://koda.nu/labbet/guide/3d_animering">koda 3D-grafik</a>, vilket fungerar med hjälp av en annan script source, <a href="https://koda.nu/simple3d.js">simple3d.js</a>, som bygger på <a href="https://threejs.org/">ThreeJS</a>. Så lite beröm ska de väl ändå få.
             
-            <p>Utöver allt detta har jag tagit fram alla scripter de använder och sammanställt dem i en tabell längst ned på den här sidan. Turbonördar som jag blir väldigt exalterade av sådant.</p>
+            <p>Utöver allt detta har jag tagit fram massa scripter och grejer som de använder och dumpat alltsammans längst ned på den här sidan. Turbonördar som jag blir väldigt exalterade av sådant.</p>
             <p>Förresten så använder Kodlabbet jQuery för dialogerna, så kör <code>$("#dialog_api").dialog("open");</code> på Kodlabbet i webbläsarkonsollen för att öppna API-dialogen utan att trycka på knappen. Anledningen till att jag vet detta är för att jag har försökt öppna dialogen automatiskt när man öppnar Kodlabbet via en länk på den här sidan, men det lär innefatta XSS och är ganska träligt att åstadkomma. Så skit i det.</p>
         </div>
         <hr>
@@ -63,12 +57,50 @@
         </div>
         <hr>
         <div>
-            <h3>KODLABBETS SKRIPTER</h3>
+            <h3>NÅGRA AV KODLABBETS SKRIPTER</h3>
+            <p>Kodlabbet använder massa skripter och assets, och många av dessa kommer från ställen som jag listat nedan. Jag har också nördat fram var koda.nu har fått flera av sina libs, texturer etc. från. Det finns mer göttiga filer att undersöka än vad som står här, men någonstans måste man dra ett streck, som min käre mor brukade säga när jag satt uppe till gryningen med liknande göromål.</p>
             <table>
-
+                <tr>
+                    <th>Skript</th>
+                    <th>Beskrivning</th>
+                </tr>
+                <tr>
+                    <td><a href="https://koda.nu/simple.js">simple.js</a></td>
+                    <td>Central 2D-skript. Innehåller central kod som samlar alla funktioner.</td>
+                </tr>
+                <tr>
+                    <td><a href="https://koda.nu/advanced.js">advanced.js</a></td>
+                    <td>Central 2D-skript. Andra halvan till simple.js, innehåller den verksamma baskoden där funktioner och sådant deklareras.</td>
+                </tr>
+                <tr>
+                    <td><a href="https://koda.nu/simple3d.js">simple3d.js</a></td>
+                    <td>Central 3D-skript.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://www.koda.nu/libs/threejs/three83.js">three83.js</a><br>
+                        <a href="https://www.koda.nu/libs/threejs/pointerlock.js">pointerlock.js</a><br>
+                        <a href="https://www.koda.nu/libs/threejs/objloader.js">objloader.js</a>
+                    </td>
+                    <td>Skripter från ThreeJS, 3D-biblioteket som Kodlabbet utgår från.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://www.koda.nu/libs/codemirror/addon/display/fullscreen.js">fullscreen.js</a><br>
+                    </td>
+                    <td>En av VÄLDIGT många filer Kodlabbet använder från CodeMirror. Se <a href="https://www.koda.nu/libs/codemirror/addon/">/libs/codemirror/addon</a> (det finns mer i codemirror/mode och codemirror/lib också)</td>
+                </tr>
+                <p>Alla skripter, tillsammans med lite annat som t.ex. <a href="https://www.koda.nu/libs/api_2d_sv.json">"API"-dokumentationen</a>, hittas i <a href="https://www.koda.nu/libs/">koda.nu/libs</a> och dess subdirectories. Enda undantaget är simple.js och advanced.js. Just <a href="https://www.koda.nu/libs/codemirror/">/libs/codemirror</a> (biblioteket för text editorn) har en index-sida, så den får man komma åt på annat sätt. Allting har jag hittat genom Network-tabben i Inspect Element.</p>
             </table>
+            <h3>NÅGRA AV KODLABBETS ASSETS</h3>
+            <p>Alla texturer och 3D-modeller kan hittas på <a href="https://koda.nu/bilder/">koda.nu/bilder</a> respektive <a href="https://koda.nu/obj/">koda.nu/obj</a>. Vet inte om det finns ytterligare subdirectories men det gör det säkert. I fallet av bilderna verkar vissa saker vara fotade av koda.nu själva, men vissa saker som exempelvis <a href="https://koda.nu/bilder/3d/ground.png">ground.png</a> har hämtats från <a href="https://opengameart.org/node/8070">OpenGameArt</a>. Har inte orkat kolla närmare på resten men jag förmodar att samma sak gäller för mycket annat där också. Se några assets <i>in action</i> i Kodlabbets <a href="http://koda.nu/labbet/guide/3d_animering">3D-mall</a>.</p>
         </div>
-        simple.js en andra halva, <a href="https://koda.nu/advanced.js">advanced.js</a>, där resten av baskoden ligger. Kolla in det vettja. Man hittar också massor av andra JS-källfiler om man kollar i Network i Inspect Element.</p>
         <hr>
+        <div>
+            <img src="sign2.png" width="350" height="70">
+            <p style="margin-top: 0;">Kimi "Krav Kanorva" Kanerva, VRGC/NA24D<br>
+            Stockholm, september 2023</p>
+            <!-- PS. VRGC < VRGO + VRGJ -->
+        </div>
     </body>
 </html>
