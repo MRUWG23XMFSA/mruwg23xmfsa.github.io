@@ -40,15 +40,12 @@ div {
 table {
     border-collapse: collapse;
 }
-td {
+td, th {
     border: 1px solid black;
     text-align: left;
     padding: 8px;
 }
 th {
-    border: 1px solid black;
-    text-align: left;
-    padding: 8px;
     background-color: gainsboro;
 }
 .center {
