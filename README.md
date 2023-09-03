@@ -1,4 +1,4 @@
-# mruwg23xmfsa.github.io
+# kanorvajs.github.io
 
 Allmänna alster från Programmering 1. JS.\
 Kursen använder simple.js från koda.nu som script src. Glöm det.
