@@ -80,7 +80,6 @@
                 for (i in title) {
                     titleCtx.beginPath();
                     titleCtx.fillStyle = "white";
-                    titleCtx.fill();
                     titleCtx.fillRect(title[i].x * playerSize + playerSize, title[i].y * playerSize + playerSize, playerSize, playerSize);
                 }
 
@@ -98,7 +97,6 @@
                 for (i in trail) {
                     gameCtx.beginPath();
                     gameCtx.fillStyle = "white";
-                    gameCtx.fill(); 
                     gameCtx.fillRect(trail[i].x, trail[i].y, playerSize, playerSize);
                 }
 
