@@ -43,11 +43,14 @@ div {
 table {
     border-collapse: collapse;
 }
-td, th {
+td {
     border: 1px solid black;
     text-align: left;
     padding: 8px;
 }
 th {
+    border: 1px solid black;
+    text-align: left;
+    padding: 8px;
     background-color: gainsboro;
 }
