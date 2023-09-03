@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TRON</title>
+        <style>
+            canvas {
+                border: 6px silver;
+                border-style: outset;
+            }
+        </style>
+    </head>
+    <body>
+        <div style="width: 800px;">
+            <canvas id="titleCanvas" width="800" height="100" tabindex="0"></canvas>
+            <canvas id="gameCanvas" width="800" height="600" tabindex="1"></canvas>
+        </div>
+        <script>
+            /*
+            TRON
+            Kimi Kanerva
+            */
+            
+            const titleCtx = document.getElementById("titleCanvas").getContext("2d")
+            const gameCtx = document.getElementById("gameCanvas").getContext("2d");
+            document.addEventListener("keydown", input);
+
+            var pos = {x: gameCanvas.width / 2, y: gameCanvas.height / 2}; // Initial position
+            var playerSize = 10; // Kvadratens sidlängd
+
+            var score = 0; // Poäng
+            var xMove = playerSize; // Rörelse i x-led (0, playerSize eller -playerSize), börja åt höger
+            var yMove = 0; // Rörelse i y-led (0, playerSize eller -playerSize)
+            var trail = []; // Koordinatlista för spåret "cykeln" lämnar (för att testas mot pos)
+
+            // Vänligen hata inte mitt manuella logotypritande här
+            const title = 
+            [{x:0, y:0}, {x:1, y:0}, {x:2, y:0}, {x:3, y:0}, {x:4, y:0}, {x:5, y:0}, {x:6, y:0}, {x:7, y:0}, {x:8, y:0}, {x:10, y:0}, {x:11, y:0}, {x:12, y:0}, {x:13, y:0}, {x:14, y:0}, {x:15, y:0}, {x:16, y:0}, {x:17, y:0}, {x:18, y:0}, {x:22, y:0}, {x:23, y:0}, {x:24, y:0}, {x:25, y:0}, {x:26, y:0}, {x:27, y:0}, {x:28, y:0}, {x:31, y:0}, {x:32, y:0}, {x:33, y:0}, {x:34, y:0}, {x:38, y:0}, {x:39, y:0}, {x:40, y:0}, 
+            {x:0, y:1}, {x:1, y:1}, {x:3, y:1}, {x:4, y:1}, {x:5, y:1}, {x:7, y:1}, {x:8, y:1}, {x:11, y:1}, {x:12, y:1}, {x:13, y:1}, {x:17, y:1}, {x:18, y:1}, {x:19, y:1}, {x:21, y:1}, {x:22, y:1}, {x:23, y:1}, {x:28, y:1}, {x:29, y:1}, {x:32, y:1}, {x:33, y:1}, {x:34, y:1}, {x:35, y:1}, {x:38, y:1}, {x:39, y:1}, 
+            {x:0, y:2}, {x:3, y:2}, {x:4, y:2}, {x:5, y:2}, {x:8, y:2}, {x:11, y:2}, {x:12, y:2}, {x:13, y:2}, {x:14, y:2}, {x:15, y:2}, {x:16, y:2}, {x:17, y:2}, {x:18, y:2}, {x:21, y:2}, {x:22, y:2}, {x:29, y:2}, {x:32, y:2}, {x:33, y:2}, {x:34, y:2}, {x:35, y:2}, {x:36, y:2}, {x:38, y:2}, {x:39, y:2}, 
+            {x:3, y:3}, {x:4, y:3}, {x:5, y:3}, {x:11, y:3}, {x:12, y:3}, {x:13, y:3}, {x:15, y:3}, {x:16, y:3}, {x:17, y:3}, {x:21, y:3}, {x:22, y:3}, {x:29, y:3}, {x:32, y:3}, {x:33, y:3}, {x:35, y:3}, {x:36, y:3}, {x:37, y:3}, {x:38, y:3}, {x:39, y:3}, 
+            {x:3, y:4}, {x:4, y:4}, {x:5, y:4}, {x:11, y:4}, {x:12, y:4}, {x:13, y:4}, {x:16, y:4}, {x:17, y:4}, {x:18, y:4}, {x:21, y:4}, {x:22, y:4}, {x:23, y:4}, {x:28, y:4}, {x:29, y:4}, {x:32, y:4}, {x:33, y:4}, {x:36, y:4}, {x:37, y:4}, {x:38, y:4}, {x:39, y:4}, 
+            {x:2, y:5}, {x:3, y:5}, {x:4, y:5}, {x:5, y:5}, {x:6, y:5}, {x:10, y:5}, {x:11, y:5}, {x:12, y:5}, {x:13, y:5}, {x:17, y:5}, {x:18, y:5}, {x:19, y:5}, {x:22, y:5}, {x:23, y:5}, {x:24, y:5}, {x:25, y:5}, {x:26, y:5}, {x:27, y:5}, {x:28, y:5}, {x:31, y:5}, {x:32, y:5}, {x:33, y:5}, {x:37, y:5}, {x:38, y:5}, {x:39, y:5}, {x:40, y:5}, 
+            {x:0, y:7}, {x:1, y:7}, {x:2, y:7}, {x:3, y:7}, {x:4, y:7}, {x:5, y:7}, {x:6, y:7}, {x:7, y:7}, {x:8, y:7}, {x:9, y:7}, {x:10, y:7}, {x:11, y:7}, {x:12, y:7}, {x:13, y:7}, {x:14, y:7}, {x:15, y:7}, {x:16, y:7}, {x:17, y:7}, {x:18, y:7}, {x:19, y:7}, {x:20, y:7}, {x:21, y:7}, {x:22, y:7}, {x:23, y:7}, {x:24, y:7}, {x:25, y:7}, {x:26, y:7}, {x:27, y:7}, {x:28, y:7}, {x:29, y:7}, {x:30, y:7}, {x:31, y:7}, {x:32, y:7}, {x:33, y:7}, {x:34, y:7}, {x:35, y:7}, {x:36, y:7}, {x:37, y:7}, {x:38, y:7}, {x:39, y:7}, {x:40, y:7}];
+
+            if (window == window.parent) {
+                document.getElementById("gameCanvas").focus(); // Sätt automatiskt spelet (canvas) i fokus
+            }
+
+            function input() {
+                if (document.activeElement == document.getElementById("gameCanvas")) {
+                    event.preventDefault();
+                    if (window.event.key == "ArrowUp" && yMove != playerSize) {
+                        xMove = 0;
+                        yMove = -playerSize;
+                    }
+                    if (window.event.key == "ArrowDown" && yMove != -playerSize) {
+                        xMove = 0;
+                        yMove = playerSize;
+                    }
+                    if (window.event.key == "ArrowLeft" && xMove != playerSize) {
+                        xMove = -playerSize;
+                        yMove = 0;
+                    }
+                    if (window.event.key == "ArrowRight" && xMove != -playerSize) {
+                        xMove = playerSize;
+                        yMove = 0;
+                    }
+                }
+            }
+
+            function tron() {
+                // Titel-canvas
+                titleCtx.clearRect(0, 0, titleCanvas.width, titleCanvas.height); // Uppdatera titelskärm
+                titleCtx.fillStyle = "black";
+                titleCtx.fillRect(0, 0, titleCanvas.width, titleCanvas.height); // Ny bakgrund
+
+                titleCtx.fillStyle = "white";
+                titleCtx.font = "16pt Courier New";
+                titleCtx.fillText("SCORE: " + score, titleCanvas.width / 1.25, titleCanvas.height / 1.75)
+                for (i in title) {
+                    titleCtx.beginPath();
+                    titleCtx.fillStyle = "white";
+                    titleCtx.fill();
+                    titleCtx.fillRect(title[i].x * playerSize + playerSize, title[i].y * playerSize + playerSize, playerSize, playerSize);
+                }
+
+                // Spel-canvas
+                gameCtx.clearRect(0, 0, gameCanvas.width, gameCanvas.height); // Uppdatera spelskärm
+                gameCtx.fillStyle = "black";
+                gameCtx.fillRect(0, 0, gameCanvas.width, gameCanvas.height); // Ny bakgrund
+                
+                pos.x = pos.x + xMove; // Flytta "cykeln"
+                pos.y = pos.y + yMove;
+                trail.push({x: pos.x, y: pos.y}); // Lagra "cykelns" nya position i "trail"
+                score++;
+
+                // Rendera "cykeln" vid alla lagrade positioner i "trail"
+                for (i in trail) {
+                    gameCtx.beginPath();
+                    gameCtx.fillStyle = "white";
+                    gameCtx.fill(); 
+                    gameCtx.fillRect(trail[i].x, trail[i].y, playerSize, playerSize);
+                }
+
+                // Förlora (om man träffar kant eller slår knut på sig själv)
+                if (pos.x + playerSize > gameCanvas.width || pos.x < 0 || pos.y + playerSize > gameCanvas.height || pos.y < 0) {
+                    clearInterval(clock);
+                    gameCtx.fillStyle = "red";
+                    gameCtx.fillRect(trail[i - 1].x, trail[i - 1].y, playerSize, playerSize);
+                }
+                for (i = 0; i < trail.length - 1; i++) {
+                    if (trail[i].x == pos.x && trail[i].y == pos.y) {
+                        clearInterval(clock);
+                        gameCtx.fillStyle = "red";
+                        gameCtx.fillRect(trail[i].x, trail[i].y, playerSize, playerSize);
+                    }
+                }
+            }
+
+            const clock = setInterval(tron, 40);
+        </script>
+    </body>
+</html>

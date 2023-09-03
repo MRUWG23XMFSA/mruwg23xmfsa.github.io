@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Övningsuppgift lektion 2</title>
+        <style>
+            canvas {
+                border: 6px silver;
+                border-style: outset;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id="canvas" width="480" height="240"></canvas>
+        <script>
+            /*
+            Övningsuppgift lektion 2
+            Namn: Kimi Kanerva
+            */
+            var ball = {x: canvas.width / 2, y: canvas.height / 2}; // Bollens position (börjar i mitten)
+            var ballDirection = {x: true, y: true}; // Bollens riktning i x- och y-led (true: höger/ned, false: vänster/upp)
+            var ballRadius = 16; // Bollens radie
+            var ballSpeed = 1; // Bollens hastighet
+
+            const ctx = document.getElementById("canvas").getContext("2d"); // Canvas
+
+            function main() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height); // Uppdatera skärm
+
+                ctx.fillStyle = "blue";
+                ctx.fillRect(0, 0, canvas.width, canvas.height); // Bakgrund
+
+                ctx.beginPath(); // Prova att ta bort detta i koden ;)
+                ctx.fillStyle = "red";
+                ctx.arc(ball.x, ball.y, ballRadius, 0, 2 * Math.PI); // Bollen
+                ctx.fill();
+
+                // Vänd vid kanter
+                if (ball.x + ballRadius > canvas.width) {ballDirection.x = false;}
+                if (ball.x - ballRadius < 0) {ballDirection.x = true;}
+                if (ball.y + ballRadius > canvas.height) {ballDirection.y = false;}
+                if (ball.y - ballRadius < 0) {ballDirection.y = true;}
+
+                // Rörelse
+                switch (ballDirection.x) {
+                    case true:
+                        ball.x += ballSpeed;
+                        break;
+                    case false:
+                        ball.x -= ballSpeed;
+                        break;
+                }
+                switch (ballDirection.y) {
+                    case true:
+                        ball.y += ballSpeed;
+                        break;
+                    case false:
+                        ball.y -= ballSpeed;
+                        break;
+                }
+            }
+
+            setInterval(main, 4); // 4 ms är minimum för setInterval
+        </script>
+    </body>
+</html>

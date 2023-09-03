@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- ORMJÄVLAR 2 – Return of the Nope Rope (Snek Edition) -->
+        <!-- DANGER NOODLE 2000 -->
+
+        <!-- KRAV "KUKEN" KANORVA SADE: NEVER BACK DOWN! -->
+        <title>ORMJÄVEL 2000</title>
+        <style>
+            canvas {
+                border: 6px silver;
+                border-style: outset;
+            }
+        </style>
+    </head>
+    <body>
+        <p>ORMJÄVEL 2000!!!</p>
+        <p>Använd piltangenterna för att styra din figur</p>
+        <canvas id="canvas" width="800" height="600" tabindex="0"></canvas>
+        <script>
+            const ctx = document.getElementById("canvas").getContext("2d");
+
+            var snakeLength = 10; // Antal ormsektioner (cirklar). Ökar vid konsumtion av prick
+            var snakeChonk = 10; // Ormsektionernas radie
+            var snakeSpeed = 10; // Ormens hastighet
+            var snakeSpacing = 10; // Avstånd mellan ormsektioner
+            var foodChonk = 10; // Matprickarnas radie
+
+            var colors = ["orangered", "forestgreen", "dodgerblue", "gold"]; // Färgpalett för ormsektioner (FORMAT: RGBY)
+            var bgColor = "black"; // Bakgrundsfärg
+
+            var points = 0; // Poäng
+            var xMove = 0; // Rörelse i x-led (0, snakeSpacing eller -snakeSpacing)
+            var yMove = 0; // Rörelse i y-led (0, snakeSpacing eller -snakeSpacing)
+            var tickSpeed; // delay för setTimeout() i millisekunder, längden på ett "tick" i programmet. Bestäms i game();
+            const initPos = {x: canvas.width / 2, y: canvas.height / 2}; // Initial position för ormens huvud (mitten av canvas-rutan)
+
+            var trail = []; // Ormsektionernas positioner. Index 0 är huvudet.
+            var food = []; // Ormfödornas positioner. Index 0 är tjockleksmat, index 1 är fartmat, index 2 är längdmat.
+
+            function init() {
+                if (window == window.parent) {
+                    document.getElementById("canvas").focus(); // Sätt automatiskt spelet (canvas) i fokus
+                }
+
+                for (i = 0; i < snakeLength * snakeSpacing; i += snakeSpacing) {
+                    trail.push({x: initPos.x - i, y: initPos.y}); // Börja i horisontellt läge, rendera från höger till vänster
+                    xMove = snakeSpacing; // Initial rörelse åt höger
+                    // För initial rörelse uppåt eller åt vänster, addera i istället för att subtrahera i
+                }
+                for (i = 0; i < 3; i++) {
+                    food[i] = {x: Math.floor(Math.random() * canvas.width / 10) * 10, y: Math.floor(Math.random() * canvas.height / 10) * 10}; // Skapa koordinater för varje sorts mat
+                }
+            }
+
+            function input() {
+                // Om spelet (canvas) är i fokus
+                if (document.activeElement == document.getElementById("canvas")) {
+                    event.preventDefault(); // Motverka sidinteraktion
+                    if (window.event.key == "ArrowUp" && yMove != snakeSpacing) {
+                        xMove = 0;
+                        yMove = -snakeSpacing;
+                    }
+                    if (window.event.key == "ArrowDown" && yMove != -snakeSpacing) {
+                        xMove = 0;
+                        yMove = snakeSpacing;
+                    }
+                    if (window.event.key == "ArrowLeft" && xMove != snakeSpacing) {
+                        xMove = -snakeSpacing;
+                        yMove = 0;
+                    }
+                    if (window.event.key == "ArrowRight" && xMove != -snakeSpacing) {
+                        xMove = snakeSpacing;
+                        yMove = 0;
+                    }
+                    // Ändra xMove och yMove beroende på senast tryckt tangent
+                    // Motverka att ormen vänder sig (endast 90 graders svängar)
+                }
+            }
+
+            function game() {
+                // UPPDATERA
+                ctx.clearRect(0, 0, canvas.width, canvas.height); // Rensa skärmen innan ny rendering
+
+                ctx.fillStyle = bgColor;
+                ctx.fillRect(0, 0, canvas.width, canvas.height); // Ny bakgrund
+
+                tickSpeed = 2000 / (snakeSpeed + 15); // f(x)=((2000)/(x+15)), bra funktion för lagom hastighetsökning. Sponsrat av GeoGebra
+
+                // I HÄNDELSE AV KONSUMERAD MAT
+                if (trail[0].x >= food[0].x - snakeChonk && trail[0].x <= food[0].x + snakeChonk && trail[0].y >= food[0].y - snakeChonk && trail[0].y <= food[0].y + snakeChonk) { 
+                    food[0] = {x: Math.floor(Math.random() * canvas.width / 10) * 10, y: Math.floor(Math.random() * canvas.height / 10) * 10};
+                    snakeChonk++;
+                    points++;
+                    // foodChonk++;
+                }
+                if (trail[0].x >= food[1].x - snakeChonk && trail[0].x <= food[1].x + snakeChonk && trail[0].y >= food[1].y - snakeChonk && trail[0].y <= food[1].y + snakeChonk) {
+                    food[1] = {x: Math.floor(Math.random() * canvas.width / 10) * 10, y: Math.floor(Math.random() * canvas.height / 10) * 10};
+                    snakeSpeed = snakeSpeed + 5;
+                    points += 4;
+                }
+                if (trail[0].x >= food[2].x - snakeChonk && trail[0].x <= food[2].x + snakeChonk && trail[0].y >= food[2].y - snakeChonk && trail[0].y <= food[2].y + snakeChonk) {
+                    food[2] = {x: Math.floor(Math.random() * canvas.width / 10) * 10, y: Math.floor(Math.random() * canvas.height / 10) * 10};
+                    trail.push({x: trail[trail.length - 1].x + xMove, y: trail[trail.length - 1].y + yMove}); 
+                    points += 2;
+                }
+                // Kanske ta tillbaka else här (eller gör EPILEPSI EDITION och WUSS EDITION, gör enfärgad eller fasta färger för masken)
+
+                snakeLength = trail.length; // snakeLength bestämmer inte ormens längd (endast initialt), utan snakeLength bestäms av längden på arrayn "trail". Detta förenklar koden (ett system för arrayn att följa ett fullt variabelt värde är mycket komplext i detta fall)
+
+                // RENDERA
+                for (i in trail) {
+                    ctx.beginPath(); // Motverkar att samma fill(); används för alla ormsektioner
+                    ctx.arc(trail[i].x, trail[i].y, snakeChonk, 0, 2 * Math.PI); // Rita cirkel
+                    ctx.fillStyle = colors[Math.floor((Math.random()*colors.length))]; // Slumpfärg från färgpalett
+                    ctx.fill(); // Använd slumpfärg på cirkel
+                }
+                for (i in food) {
+                    ctx.beginPath();
+                    ctx.arc(food[i].x, food[i].y, foodChonk, 0, 2 * Math.PI);
+                    ctx.fillStyle = colors[i];
+                    ctx.fill();
+                }
+
+                // POÄNGTAVLA
+                ctx.font = "20px monospace";
+                function scoreboard(offsetX, offsetY, shadow) {
+                    ctx.fillStyle = "black";
+                    if (!shadow) {ctx.fillStyle = 'white';}
+                    ctx.fillText("POÄNG: " + points, 12 + offsetX, 28 + offsetY);
+                    if (!shadow) {ctx.fillStyle = colors[0];}
+                    ctx.fillText("FETMA: " + snakeChonk, 12 + offsetX, 56 + offsetY);
+                    if (!shadow) {ctx.fillStyle = colors[1];}
+                    ctx.fillText("FART: " + snakeSpeed, 12 + offsetX, 78 + offsetY);
+                    if (!shadow) {ctx.fillStyle = colors[2];}
+                    ctx.fillText("LÄNGD: " + snakeLength, 12 + offsetX, 100 + offsetY);
+                }
+                scoreboard(1.5, 1.5, true)
+                scoreboard(0, 0)
+                
+                // FLYTTA
+                if (trail[0].x < 0) {
+                    trail.unshift({x: canvas.width, y: trail[0].y + yMove});
+                    trail.pop();
+                } else if (trail[0].x > canvas.width) {
+                    trail.unshift({x: 0, y: trail[0].y + yMove});
+                    trail.pop();
+                } else if (trail[0].y < 0) {
+                    trail.unshift({x: trail[0].x + xMove, y: canvas.height});
+                    trail.pop();
+                } else if (trail[0].y > canvas.height) {
+                    trail.unshift({x: trail[0].x + xMove, y: 0});
+                    trail.pop();
+                } else {
+                    trail.unshift({x: trail[0].x + xMove, y: trail[0].y + yMove}); // Placera nästa ormsektion
+                    trail.pop(); // Ta bort sista ormsektionen
+                }
+
+                // I HÄNDELSE AV FÖRLUST
+                for (i in trail) {
+                    if (trail[0].x == trail[i].x && trail[0].y == trail[i].y && false) {
+                        throw "ÄT SKIT!";
+                    }
+                }
+            }
+
+            // HUVUDKOD
+            init();
+            game(); // Motverkar vit ruta i början
+            document.addEventListener("keydown", input); // Vid knapptryck, ändra riktning etc
+            function clock() { // Kör spelet med variabel hastighet (liknar NES)
+                setTimeout(game, tickSpeed);
+                setTimeout(clock, tickSpeed);
+            } 
+            clock();
+
+// LÄGG TILL: Förlora om man går in i sig själv
+// LÄGG TILL: Poängsystemet: Gör så att högre hastigheter ökar poängen per matbit, tjockare orm ger lite lägre poäng per matbit, och längre orm ger lite mer poäng per matbit
+// IF EX. TRAIL[0].X + SNAKECHONK!!!!!! ANNARS BLIR DET SKUMT. DET ÄR BÅDA CIRKLARNAS KANT SOM SKA TESTAS FÖR, ALLTSÅ MÅSTE MAN TA RADIEN FÖR BÅDA!
+
+            // DEBUG-MENY
+            var debugOpen = false;
+            document.addEventListener("keydown", 
+            function debug() {
+                if (window.event.key == "+" && debugOpen == 0) {
+                    debugOpen = true;
+                    document.getElementById("debug").appendChild(document.createElement("p")).setAttribute("id", "debugText");
+                    setInterval(debugText, snakeSpeed);
+                    function debugText() {
+                        document.getElementById("debugText").innerHTML = 
+                        "<u>" + "DEBUG-MENY" + "</u>" + "<br>" + 
+                        "trail Arr: " + "<br>";
+                        for (i in trail) {
+                            document.getElementById("debugText").innerHTML += i + ": " + trail[i].x + "x ";
+                            document.getElementById("debugText").innerHTML += i + ": " + trail[i].y + "y " + "<br>";
+                        }
+                        document.getElementById("debugText").innerHTML += "xMove: " + xMove + "<br>";
+                        document.getElementById("debugText").innerHTML += "yMove: " + yMove + "<br>";
+                        document.getElementById("debugText").innerHTML += "activeElement: " + document.activeElement + "<br>";
+                        document.getElementById("debugText").innerHTML += "trail[0]: " + trail[0] + "<br>";
+                        document.getElementById("debugText").innerHTML += "food[0]: " + food[0] + "<br>";
+
+                        document.getElementById("debugText").innerHTML += "snakeLength: " + snakeLength + "<br>";
+                        document.getElementById("debugText").innerHTML += "snakeChonk: " + snakeChonk + "<br>";
+                        document.getElementById("debugText").innerHTML += "snakeSpeed: " + snakeSpeed + "<br>";
+                        document.getElementById("debugText").innerHTML += "tickSpeed: " + tickSpeed + " ms" + "<br>";
+                    }
+                }
+            }
+            );
+        /*
+            DEVSHIT 
+            Proof-of-concepts, tester samt gammal kod. Skit högaktningsfullt i detta.
+
+            function snake(length, chonk, xPos, yPos) {
+                for (i = 0; i < length; i++) {
+                    trail.push({x: xPos - i, y: yPos - i});
+                }
+                document.write(trail);
+            }
+            snake(10, 0, 10, 0);
+
+            for (i in trail){
+                document.write(trail[i].x);
+                document.write(trail[i].y);
+            }
+
+            ctx.fillStyle = "green";
+            ctx.fillRect(10, 10, 150, 100);
+
+            // Motverka sidinteraktion om spelet (canvas) är i fokus
+            window.addEventListener("keydown", 
+            function focus() {
+                if (document.activeElement == document.getElementById("canvas")) {
+                    event.preventDefault();
+                }
+            }
+            );
+
+            tickSpeed = 3000 / ((snakeSpeed + 110) / 4); // f(x)=((1000)/(((x+30)/(4))))
+
+            GAMLA SYSTEM FÖR TICK-KLOCKA (hastigheten är ej variabel under drift för dessa, därför ersattes de med setTimeout();)
+            // setInterval(game, snakeTickSpeed);
+
+            // clearInterval(clock);
+            // const clock = setInterval(game, snakeTickSpeed); 
+        */
+
+        /*
+
+        OM DETTA SKA LÄMNAS IN:
+        Tag bort all profanitet och döp det till "ORMRACKARE 2000"
+
+        */
+        </script>
+        <div id="debug"></div>
+        <!-- <p>&copy 2023 Krav "Kuken" Kanorva Spelfabrik GmbH. Alla rättigheter förbehålls från Rauzat (han har inga).</p> -->
+        <!-- <p>&copy 2023 Homofila Analdaller AB</p> -->
+    </body>
+</html>

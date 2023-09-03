@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- KOPIA AV "API" FRÅN KODA.NU/LABBET. -->
+        <!-- https://koda.nu/unsaved -->
+        
+        <meta charset="UTF-8">
+        <style>
+            body, html {
+                padding: 0;
+                margin: 12px;
+                font-family: 'Quantico', sans-serif;
+                background-color: white;
+                color: black;
+                -webkit-text-size-adjust: 100%;
+                position: relative;
+                height: 100%;
+            }
+
+            #dialog_api dt {
+                font-family: monospace;
+            }
+
+            #dialog_api dd
+            {
+                margin-top: 5px;
+                margin-bottom: 1em;
+            }
+        </style>
+    </head>
+    <body>
+        <div title="API" class="dialog" id="dialog_api">
+            <dl>
+              <dt>abs(X)</dt>  
+              <dd> Returnerar absolutbeloppet av talet <code>X</code>.</dd> 
+              <dt>arc(X, Y, RADIE, VINKEL, TJOCKLEK, FÄRG)</dt>
+              <dd> Ritar ett cirkelsegment på position (<code>X</code>, <code>Y</code>)
+                med den givna radien, vinkeln, linjetjockleken och
+                färgen.</dd>
+              <dt>ceil(X)</dt> 
+              <dd> Returnerar talet <code>X</code> utan några decimaler, avrundat uppåt.</dd>
+              <dt>circle(X, Y, RADIE, FÄRG)</dt>
+              <dd> Ritar en fylld cirkel på position (<code>X</code>, <code>Y</code>)
+                med den givna radien och färgen.</dd>
+              <dt>clearScreen()</dt>  
+              <dd> Rensar ritytan.</dd>
+              <dt>distance(X1, Y1, X2, Y2)</dt>  
+              <dd> Returnerar avståndet mellan punkterna (<code>X1</code>,
+                <code>Y1</code>) och (<code>X2</code>, <code>Y2</code>). Kan också anropas med
+                endast två argument om de är objekt som innehåller
+                variablerna <code>x</code> och <code>y</code>.</dd>
+              <dt>distance3D(X1, Y1, Z1, X2, Y2, Z2)</dt>  
+              <dd> Returnerar avståndet mellan punkterna (<code>X1</code>,
+                <code>Y1</code>, <code>Z1</code>) och (<code>X2</code>, <code>Y2</code>,
+                <code>Z2</code>). Kan också anropas med bara två argument om de är
+                objekt som innehåller variablerna <code>x</code>, <code>y</code> och
+                <code>z</code>.</dd>
+              <dt>fill(FÄRG)</dt>  
+              <dd> Fyller ritytan med en färg.</dd>
+              <dt>floor(X)</dt>  
+              <dd> Returnerar talet <code>X</code> utan några
+                decimaler, avrundat neråt.</dd>
+              <dt>getPixel(X, Y)</dt>  
+              <dd> Returnerar ett objekt som innehåller variablerna
+                <code>red</code>, <code>green</code> och <code>blue</code>, som representerar
+                färgen på den pixel som befinner sig på positionen
+                (<code>X</code>, <code>Y</code>).</dd>
+              <dt>hideMouse()</dt>  
+              <dd> Döljer muspekaren.</dd>
+              <dt>keyboard</dt>  
+              <dd> Ett objekt som innehåller variabler för tangenterna på
+                tangentbordet. Variablerna är antingen sanna eller falska
+                beroende på om just den tangenten är nedtryckt för
+                tillfället. De tangenter som du kan kontrollera med namn är:
+                <code> up, down, left, right, space, shift, alt, ctrl, enter,
+                zero &rarr; nine, a &rarr; z</code>. Bokstäverna
+                stämmer bara på svenska och engelska tangentbord. Det går
+                också att kontrollera keyboard[X], där X är koden för en
+                viss tangent.</dd>
+              <dt>line(X1, Y1, X2, Y2, TJOCKLEK, FÄRG)</dt>  
+              <dd> Ritar ett streck från koordinaten (<code>X1</code>, <code>Y1</code>)
+                till (<code>X2</code>, <code>Y2</code>) med den givna tjockleken och
+                färgen.</dd>
+              <dt>loopSound(LJUD, VOLYM)</dt>  
+              <dd> Spela ett bakgrundsljud om
+                och om igen i bakgrunden, exempelvis musik. Argumenten
+                fungerar som i <code>playSound</code> som är beskrivet nedan.</dd>
+              <dt>math</dt>  
+              <dd> Ett objekt som gör det lätt att experimentera med
+                matematik. </dd>
+              <dt>mixColor(R, G, B)</dt>  
+              <dd> Används för att blanda en egen färg. Det första
+                argumentet anger hur mycket rött som ska blandas in, det
+                andra anger mängden grönt och det tredje mängden
+                blått. Varje argument ska vara mellan 0 och 255.
+                Exempel: <code>circle(100, 100, 50, mixColor(100, 0, 0));</code>.</dd>
+              <dt>mouse</dt>  
+              <dd> Ett objekt som innehåller musens nuvarande position och
+                status. Variablerna <code>x</code> och <code>y</code> ger positionen och
+                variablerna <code>left</code>, <code>right</code> och <code>middle</code> ger
+                sant eller falskt beroende på om motsvarande musknapp är
+                nedtryckt.</dd>
+              <dt>pi</dt>  
+              <dd> En variabel som innehåller talet pi.</dd>
+              <dt>picture(X, Y, BILD)</dt>  
+              <dd> Placerar en bild på ritytan, där bildens övre vänstra
+                hörn hamnar på position (<code>X</code>, <code>Y</code>).  Argumentet
+                <code>BILD</code> kan vara en webbadress eller en sökväg till en
+                bild på datorn.</dd>
+              <dt>playSound(LJUD, VOLYM)</dt> 
+              <dd> Spela upp en ljudeffekt. Argumentet <code>volym</code> ska vara
+                ett tal mellan 0 och 1; om du inte anger någon volym så blir
+                den 1.</dd>
+              <dt>pow(BAS, EXPONENT)</dt>  
+              <dd> Returnerar ett tal som är <code>BAS</code> upphöjt till
+                <code>EXPONENT</code>. Om man anropar funktionen med basen 2 och
+                exponenten 3 blir resultatet: 8.</dd>
+              <dt>preloadSound(LJUD)</dt>
+              <dd> Laddar in ett ljud i datorns minne.</dd>
+              <dt>random(X)</dt>  
+              <dd> Returnerar ett slumptal mellan 0 och <code>X - 1</code>.</dd>
+              <dt>randomAlternative(LISTA)</dt>
+              <dd> Returnerar ett slumpmässigt element från en lista.</dd>
+              <dt>rectangle(X, Y, BREDD, HÖJD, FÄRG)</dt>  
+              <dd> Ritar en rektangel på koordinaten (<code>X</code>, <code>Y</code>)
+                med den givna bredden, höjden och färgen.</dd>
+              <dt>restore()</dt>  
+              <dd> Återställer koordinatsystemet till det tillstånd som det
+                var i vid det senaste anropet av <code>save()</code>.</dd>
+              <dt>ring(X, Y, RADIE, TJOCKLEK, FÄRG)</dt>  
+              <dd> Ritar en ring på position (X, Y) med den givna radien,
+                linjetjockleken och färgen.</dd>
+              <dt>rotate(GRADER)</dt>  
+              <dd> Roterar koordinatsystemet med <code>GRADER</code> grader.</dd>
+              <dt>rotateRadians(RADIANER)</dt> 
+              <dd> Roterar koordinatsystemet med <code>RADIANER</code>
+                radianer.</dd>
+              <dt>save()</dt>  
+              <dd> Sparar koordinatsystemets nuvarande läge.</dd>
+              <dt>scale(X-FAKTOR, Y-FAKTOR)</dt>  
+              <dd> Förstorar eller förminskar hela koordinatsystemet i
+                <code>X</code>- respektive <code>Y</code>-ledd. Om ett negativt tal
+                anges blir koordinatsystemet spegelvänt kring den
+                axeln.<br />
+                Exempel: <code>scale(2, 2)</code> (allt blir dubbelt så stort)<br />
+                Exempel: <code>scale(1, -1)</code> (allt blir upp-och-nedvänt)</dd>
+              <dt>showMouse()</dt>  
+              <dd> Gör att muspekaren blir synlig.</dd>
+              <dt>sin(V)  cos(V)  tan(V)  asin(V)  acos(V)  atan(V)</dt>  
+              <dd>
+                De vanligaste trigonometriska funktionerna sinus, cosinus,
+                tangens samt deras inverser. Alla tar som argument en vinkel
+                uttryckt i radianer.</dd>
+              <dt>sqrt(X)</dt> 
+              <dd> Returnerar kvadratroten av talet <code>X</code>.</dd>
+              <dt>start()</dt>  
+              <dd> Den första funktionen som körs.</dd>
+              <dt>stopSound(LJUD)</dt>  
+              <dd> Stoppar ett ljud om det håller på att spelas upp.</dd>
+              <dt>stopUpdate()</dt>  
+              <dd> Stoppar <code>update()</code>-funktionen och avslutar därmed
+                animeringen.</dd>
+              <dt>text(X, Y, STORLEK, TEXTSTRÄNG, FÄRG)</dt>  
+              <dd> Ritar ut textsträngen <code>TEXTSTRÄNG</code> på koordinaten
+                (<code>X</code>, <code>Y</code>) med den givna färgen och
+                storleken.</dd>
+              <dt>totalHeight</dt>  
+              <dd> Den totala höjden på den tillgängliga ritytan.</dd>
+              <dt>totalWidth</dt> 
+              <dd> Den totala bredden på den tillgängliga ritytan.</dd>
+              <dt>touchscreen</dt>  
+              <dd> Ett objekt som innehåller information om användarens
+                petskärm. Objektet innehåller variabeln
+                <code>currentlyTouched</code>, som är sann eller falsk beroende på
+                om någon petar för tillfället, samt arrayen <code>points</code>
+                som innehåller de beröringspunkter som just då finns. Varje
+                beröring har tre egenskaper, <code>x</code>, <code>y</code> och
+                <code>id</code>.</dd>
+              <dt>translate(X, Y)</dt>  
+              <dd> Förflyttar koordinatsystemets origo till koordinaten
+                (<code>X</code>, <code>Y</code>).</dd>
+              <dt>triangle(X1, Y1, X2, Y2, X3, Y3, FÄRG)</dt>  
+              <dd> Ritar en triangel som har sina hörn på koordinaterna
+                (<code>X1</code>, <code>Y1</code>), (<code>X2</code>, <code>Y2</code>) och
+                (<code>X3</code>, <code>Y3</code>) med den givna färgen.</dd>
+              <dt>turtle</dt>  
+              <dd> Ett objekt som man kan använda för att göra så kallad
+                turtlegrafik.</dd>
+              <dt>update()</dt>  
+              <dd> En funktion som anropas många gånger per sekund och gör
+                det möjligt för programmeraren att skapa rörliga
+                objekt.</dd>
+              <dt>updatesPerSecond</dt> 
+              <dd> Innehåller ett tal som anger hur många gånger per sekund
+                som <code>update()</code> anropas.</dd>
+            </dl>
+        </div>
+    </body>
+</html>
