@@ -49,6 +49,9 @@
             function input() {
                 if (document.activeElement == document.getElementById("gameCanvas")) {
                     event.preventDefault();
+                    if (window.event.key == " ") {
+                        location.reload();
+                    }
                     if (window.event.key == "ArrowUp" && yMove != playerSize) {
                         xMove = 0;
                         yMove = -playerSize;

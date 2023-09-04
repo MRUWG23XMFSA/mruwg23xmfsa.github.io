@@ -39,10 +39,6 @@
             var food = []; // Ormfödornas positioner. Index 0 är tjockleksmat, index 1 är fartmat, index 2 är längdmat.
 
             function init() {
-                if (window == window.parent) {
-                    document.getElementById("canvas").focus(); // Sätt automatiskt spelet (canvas) i fokus
-                }
-
                 for (i = 0; i < snakeLength * snakeSpacing; i += snakeSpacing) {
                     trail.push({x: initPos.x - i, y: initPos.y}); // Börja i horisontellt läge, rendera från höger till vänster
                     xMove = snakeSpacing; // Initial rörelse åt höger
@@ -53,10 +49,17 @@
                 }
             }
 
+            if (window == window.parent) {
+                document.getElementById("canvas").focus(); // Sätt automatiskt spelet (canvas) i fokus
+            }
+
             function input() {
                 // Om spelet (canvas) är i fokus
                 if (document.activeElement == document.getElementById("canvas")) {
                     event.preventDefault(); // Motverka sidinteraktion
+                    if (window.event.key == " ") {
+                        location.reload();
+                    }
                     if (window.event.key == "ArrowUp" && yMove != snakeSpacing) {
                         xMove = 0;
                         yMove = -snakeSpacing;
@@ -208,50 +211,50 @@
                 }
             }
             );
-        /*
-            DEVSHIT 
-            Proof-of-concepts, tester samt gammal kod. Skit högaktningsfullt i detta.
+            /*
+                DEVSHIT 
+                Proof-of-concepts, tester samt gammal kod. Skit högaktningsfullt i detta.
 
-            function snake(length, chonk, xPos, yPos) {
-                for (i = 0; i < length; i++) {
-                    trail.push({x: xPos - i, y: yPos - i});
+                function snake(length, chonk, xPos, yPos) {
+                    for (i = 0; i < length; i++) {
+                        trail.push({x: xPos - i, y: yPos - i});
+                    }
+                    document.write(trail);
                 }
-                document.write(trail);
-            }
-            snake(10, 0, 10, 0);
+                snake(10, 0, 10, 0);
 
-            for (i in trail){
-                document.write(trail[i].x);
-                document.write(trail[i].y);
-            }
-
-            ctx.fillStyle = "green";
-            ctx.fillRect(10, 10, 150, 100);
-
-            // Motverka sidinteraktion om spelet (canvas) är i fokus
-            window.addEventListener("keydown", 
-            function focus() {
-                if (document.activeElement == document.getElementById("canvas")) {
-                    event.preventDefault();
+                for (i in trail){
+                    document.write(trail[i].x);
+                    document.write(trail[i].y);
                 }
-            }
-            );
 
-            tickSpeed = 3000 / ((snakeSpeed + 110) / 4); // f(x)=((1000)/(((x+30)/(4))))
+                ctx.fillStyle = "green";
+                ctx.fillRect(10, 10, 150, 100);
 
-            GAMLA SYSTEM FÖR TICK-KLOCKA (hastigheten är ej variabel under drift för dessa, därför ersattes de med setTimeout();)
-            // setInterval(game, snakeTickSpeed);
+                // Motverka sidinteraktion om spelet (canvas) är i fokus
+                window.addEventListener("keydown", 
+                function focus() {
+                    if (document.activeElement == document.getElementById("canvas")) {
+                        event.preventDefault();
+                    }
+                }
+                );
 
-            // clearInterval(clock);
-            // const clock = setInterval(game, snakeTickSpeed); 
-        */
+                tickSpeed = 3000 / ((snakeSpeed + 110) / 4); // f(x)=((1000)/(((x+30)/(4))))
 
-        /*
+                GAMLA SYSTEM FÖR TICK-KLOCKA (hastigheten är ej variabel under drift för dessa, därför ersattes de med setTimeout();)
+                // setInterval(game, snakeTickSpeed);
 
-        OM DETTA SKA LÄMNAS IN:
-        Tag bort all profanitet och döp det till "ORMRACKARE 2000"
+                // clearInterval(clock);
+                // const clock = setInterval(game, snakeTickSpeed); 
+            */
 
-        */
+            /*
+
+            OM DETTA SKA LÄMNAS IN:
+            Tag bort all profanitet och döp det till "ORMRACKARE 2000"
+
+            */
         </script>
         <div id="debug"></div>
         <!-- <p>&copy 2023 Krav "Kuken" Kanorva Spelfabrik GmbH. Alla rättigheter förbehålls från Rauzat (han har inga).</p> -->
