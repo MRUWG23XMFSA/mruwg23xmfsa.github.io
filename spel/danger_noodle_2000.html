@@ -38,18 +38,7 @@
             var trail = []; // Ormsektionernas positioner. Index 0 är huvudet.
             var food = []; // Ormfödornas positioner. Index 0 är tjockleksmat, index 1 är fartmat, index 2 är längdmat.
 
-            function init() {
-                for (i = 0; i < snakeLength * snakeSpacing; i += snakeSpacing) {
-                    trail.push({x: initPos.x - i, y: initPos.y}); // Börja i horisontellt läge, rendera från höger till vänster
-                    xMove = snakeSpacing; // Initial rörelse åt höger
-                    // För initial rörelse uppåt eller åt vänster, addera i istället för att subtrahera i
-                }
-                for (i = 0; i < 3; i++) {
-                    food[i] = {x: Math.floor(Math.random() * canvas.width / 10) * 10, y: Math.floor(Math.random() * canvas.height / 10) * 10}; // Skapa koordinater för varje sorts mat
-                }
-            }
-
-            if (window == window.parent) {
+            if (window == window.parent || window.location.hash == "#reload") {
                 document.getElementById("canvas").focus(); // Sätt automatiskt spelet (canvas) i fokus
             }
 
@@ -58,7 +47,8 @@
                 if (document.activeElement == document.getElementById("canvas")) {
                     event.preventDefault(); // Motverka sidinteraktion
                     if (window.event.key == " ") {
-                        location.reload();
+                        window.location = "#reload"; // Lägg till hash vid mellanslag-omstart, för autofocus
+                        window.location.reload();
                     }
                     if (window.event.key == "ArrowUp" && yMove != snakeSpacing) {
                         xMove = 0;
@@ -78,6 +68,17 @@
                     }
                     // Ändra xMove och yMove beroende på senast tryckt tangent
                     // Motverka att ormen vänder sig (endast 90 graders svängar)
+                }
+            }
+
+            function init() {
+                for (i = 0; i < snakeLength * snakeSpacing; i += snakeSpacing) {
+                    trail.push({x: initPos.x - i, y: initPos.y}); // Börja i horisontellt läge, rendera från höger till vänster
+                    xMove = snakeSpacing; // Initial rörelse åt höger
+                    // För initial rörelse uppåt eller åt vänster, addera i istället för att subtrahera i
+                }
+                for (i = 0; i < 3; i++) {
+                    food[i] = {x: Math.floor(Math.random() * canvas.width / 10) * 10, y: Math.floor(Math.random() * canvas.height / 10) * 10}; // Skapa koordinater för varje sorts mat
                 }
             }
 

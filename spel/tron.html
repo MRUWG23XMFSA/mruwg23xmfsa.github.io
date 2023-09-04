@@ -42,15 +42,17 @@
             {x:2, y:5}, {x:3, y:5}, {x:4, y:5}, {x:5, y:5}, {x:6, y:5}, {x:10, y:5}, {x:11, y:5}, {x:12, y:5}, {x:13, y:5}, {x:17, y:5}, {x:18, y:5}, {x:19, y:5}, {x:22, y:5}, {x:23, y:5}, {x:24, y:5}, {x:25, y:5}, {x:26, y:5}, {x:27, y:5}, {x:28, y:5}, {x:31, y:5}, {x:32, y:5}, {x:33, y:5}, {x:37, y:5}, {x:38, y:5}, {x:39, y:5}, {x:40, y:5}, 
             {x:0, y:7}, {x:1, y:7}, {x:2, y:7}, {x:3, y:7}, {x:4, y:7}, {x:5, y:7}, {x:6, y:7}, {x:7, y:7}, {x:8, y:7}, {x:9, y:7}, {x:10, y:7}, {x:11, y:7}, {x:12, y:7}, {x:13, y:7}, {x:14, y:7}, {x:15, y:7}, {x:16, y:7}, {x:17, y:7}, {x:18, y:7}, {x:19, y:7}, {x:20, y:7}, {x:21, y:7}, {x:22, y:7}, {x:23, y:7}, {x:24, y:7}, {x:25, y:7}, {x:26, y:7}, {x:27, y:7}, {x:28, y:7}, {x:29, y:7}, {x:30, y:7}, {x:31, y:7}, {x:32, y:7}, {x:33, y:7}, {x:34, y:7}, {x:35, y:7}, {x:36, y:7}, {x:37, y:7}, {x:38, y:7}, {x:39, y:7}, {x:40, y:7}];
 
-            if (window == window.parent) {
+            if (window == window.parent || window.location.hash == "#reload") {
                 document.getElementById("gameCanvas").focus(); // Sätt automatiskt spelet (canvas) i fokus
             }
 
             function input() {
+                // Om spelet (canvas) är i fokus
                 if (document.activeElement == document.getElementById("gameCanvas")) {
-                    event.preventDefault();
+                    event.preventDefault(); // Motverka sidinteraktion
                     if (window.event.key == " ") {
-                        location.reload();
+                        window.location = "#reload"; // Lägg till hash vid mellanslag-omstart, för autofocus
+                        window.location.reload();
                     }
                     if (window.event.key == "ArrowUp" && yMove != playerSize) {
                         xMove = 0;
