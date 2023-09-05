@@ -5,13 +5,16 @@
         <meta charset="UTF-8">
         <base target="_blank">
         <link rel="stylesheet" href="/css/main.css">
+        <script src="/libs/jquery-3.7.1.min.js"></script>
+        <script> 
+            $(function() {
+                $("#header").load("/header.html");
+                $("#footer").load("/footer.html");
+            });
+        </script> 
     </head>
     <body>
-        <div class="center">
-            <h1>Kanorvas JS-Mög</h1>
-            <h2>Allmänna alster från Programmering 1</h2>
-        </div>
-        <hr>
+        <header id="header"></header>
         <div>
             <h3>GENERELL INFORMATION</h3>
             <p>Hösten 2023 har präglats av Kimi Kanervas totala dominans över samtliga andra individer som går kursen Programmering 1 på Viktor Rydberg Gymnasium Campus Viktor Rydberg.</p>
@@ -103,12 +106,6 @@
             <h3>NÅGRA AV KODLABBETS ASSETS</h3>
             <p>Alla texturer och 3D-modeller kan hittas på <a href="https://koda.nu/bilder/">koda.nu/bilder</a> respektive <a href="https://koda.nu/obj/">koda.nu/obj</a>. Vet inte om det finns ytterligare subdirectories men det gör det säkert. I fallet av bilderna verkar vissa saker vara fotade av koda.nu själva, men vissa saker som exempelvis <a href="https://koda.nu/bilder/3d/ground.png">ground.png</a> har hämtats från <a href="https://opengameart.org/node/8070">OpenGameArt</a>. Har inte orkat kolla närmare på resten men jag förmodar att samma sak gäller för mycket annat där också. Se några assets <i>in action</i> i Kodlabbets <a href="http://koda.nu/labbet/guide/3d_animering">3D-mall</a>.</p>
         </div>
-        <hr>
-        <div>
-            <img src="sign2.png" width="350" height="70">
-            <p style="margin-top: 0;">Kimi "Krav Kanorva" Kanerva, VRGC/NA24D<br>
-            Stockholm, september 2023</p>
-            <!-- PS. VRGC < VRGO + VRGJ -->
-        </div>
+        <footer id="footer"></footer>
     </body>
 </html>
