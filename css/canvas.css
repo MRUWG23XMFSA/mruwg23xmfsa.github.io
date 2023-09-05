@@ -1,9 +1,11 @@
+@import url(fonts.css);
+
 body {
     color: #2d3b45;
-    font-family: "Lato", sans-serif;
+    font-family: "LatoWeb", sans-serif;
     padding-inline: 12px;
 }
-h1 {
+h1, h2 {
     font-weight: normal;
 }
 pre {
