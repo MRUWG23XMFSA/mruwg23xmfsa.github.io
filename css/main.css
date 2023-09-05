@@ -1,6 +1,6 @@
 html {
     height: 100%;
-    background-image: url("../eddie.jpg");
+    background-image: url("/eddie.jpg");
     background-repeat: repeat;
 }
 body {
