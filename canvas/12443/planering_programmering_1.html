@@ -1,0 +1,376 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+    body {
+        background-color: white;
+        color: black;
+        font-weight: 400;
+        font-size: 13px;
+        font-family: Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
+        margin: 0;
+    }
+    
+    th {
+        font-weight: 400;
+        background: transparent;
+        vertical-align: middle;
+        color: #222;
+        /* height: 23px; */
+        border: 1px solid #ccc;
+        border-width: 0 1px 0 0;
+        padding: 0
+    }
+
+    td {
+        border: 1px solid #e5e5e5;
+        border-color: rgba(0, 0, 0, .15);
+        border-width: 0 1px 1px 0;
+        vertical-align: bottom;
+        line-height: inherit;
+        background-color: white;
+    }
+
+    .waffle {
+        table-layout: fixed;
+        border-collapse: separate;
+        border-style: none;
+        border-spacing: 0;
+        cursor: default;
+    }
+
+    .ritz .waffle a {
+        color: inherit;
+    }
+
+    .ritz .waffle .s11 {
+        border-bottom: 1px SOLID #000000;
+        border-right: 1px SOLID #000000;
+        background-color: #ea9999;
+        text-align: left;
+        color: #000000;
+        font-family: 'Arial';
+        font-size: 10pt;
+        vertical-align: bottom;
+        white-space: nowrap;
+        padding: 2px 3px 2px 3px;
+    }
+
+    .ritz .waffle .s0 {
+        border-bottom: 1px SOLID #000000;
+        border-right: 1px SOLID #000000;
+        background-color: #ffffff;
+        text-align: left;
+        color: #000000;
+        font-family: 'Arial';
+        font-size: 10pt;
+        vertical-align: bottom;
+        white-space: nowrap;
+        padding: 2px 3px 2px 3px;
+    }
+
+    .ritz .waffle .s8 {
+        border-bottom: 1px SOLID #000000;
+        border-right: 1px SOLID #000000;
+        background-color: #ffffff;
+        text-align: left;
+        color: #000000;
+        font-family: 'Arial';
+        font-size: 10pt;
+        vertical-align: top;
+        white-space: normal;
+        word-wrap: break-word;
+        padding: 2px 3px 2px 3px;
+    }
+
+    .ritz .waffle .s4 {
+        border-bottom: 1px SOLID #000000;
+        border-right: 1px SOLID #000000;
+        background-color: #000000;
+        text-align: center;
+        font-weight: bold;
+        color: #ffffff;
+        font-family: 'Arial';
+        font-size: 10pt;
+        vertical-align: bottom;
+        white-space: nowrap;
+        padding: 2px 3px 2px 3px;
+    }
+
+    .ritz .waffle .s5 {
+        border-bottom: 1px SOLID #000000;
+        border-right: 1px SOLID #000000;
+        background-color: #ffffff;
+        text-align: center;
+        color: #000000;
+        font-family: 'Arial';
+        font-size: 10pt;
+        vertical-align: bottom;
+        white-space: nowrap;
+        padding: 2px 3px 2px 3px;
+    }
+
+    .ritz .waffle .s9 {
+        border-bottom: 1px SOLID #000000;
+        border-right: 1px SOLID #000000;
+        background-color: #c9daf8;
+        text-align: right;
+        color: #000000;
+        font-family: 'Arial';
+        font-size: 10pt;
+        vertical-align: bottom;
+        white-space: nowrap;
+        padding: 2px 3px 2px 3px;
+    }
+
+    .ritz .waffle .s2 {
+        background-color: #fce5cd;
+        text-align: left;
+        color: #000000;
+        font-family: 'Arial';
+        font-size: 10pt;
+        vertical-align: top;
+        white-space: normal;
+        word-wrap: break-word;
+        padding: 2px 3px 2px 3px;
+    }
+
+    .ritz .waffle .s1 {
+        background-color: #fce5cd;
+        text-align: right;
+        font-weight: bold;
+        color: #000000;
+        font-family: 'Arial';
+        font-size: 10pt;
+        vertical-align: top;
+        white-space: nowrap;
+        padding: 2px 3px 2px 3px;
+    }
+
+    .ritz .waffle .s6 {
+        border-bottom: 1px SOLID #000000;
+        border-right: 1px SOLID #000000;
+        background-color: #b7b7b7;
+        text-align: right;
+        color: #000000;
+        font-family: 'Arial';
+        font-size: 10pt;
+        vertical-align: bottom;
+        white-space: nowrap;
+        padding: 2px 3px 2px 3px;
+    }
+
+    .ritz .waffle .s10 {
+        border-bottom: 1px SOLID #000000;
+        border-right: 1px SOLID #000000;
+        background-color: #ffffff;
+        text-align: left;
+        color: #000000;
+        font-family: 'Arial';
+        font-size: 10pt;
+        vertical-align: top;
+        white-space: nowrap;
+        padding: 2px 3px 2px 3px;
+    }
+
+    .ritz .waffle .s7 {
+        border-bottom: 1px SOLID #000000;
+        border-right: 1px SOLID #000000;
+        background-color: #ffffff;
+        text-align: left;
+        color: #000000;
+        font-family: 'arial';
+        font-size: 10pt;
+        vertical-align: top;
+        white-space: normal;
+        word-wrap: break-word;
+        padding: 2px 3px 2px 3px;
+    }
+
+    .ritz .waffle .s3 {
+        border-bottom: 1px SOLID #000000;
+        background-color: #ffffff;
+        text-align: left;
+        color: #000000;
+        font-family: 'Arial';
+        font-size: 10pt;
+        vertical-align: bottom;
+        white-space: nowrap;
+        padding: 2px 3px 2px 3px;
+    }
+
+    #top-bar {
+        padding: 6px 6px 0;
+        border-bottom: 1px solid #ccc;
+    }
+    
+    #doc-title {
+        padding-bottom: 5px; 
+        font-size: 15px;
+    }
+        
+</style>
+<div id="top-bar">
+    <div id="doc-title">
+        <span class="name">Planering Programmering 1 : ht23</span>
+    </div>
+</div>
+<div class="ritz">
+    <table class="waffle" cellspacing="0" cellpadding="0">
+        <thead>
+            <tr>
+                <th></th>
+                <th id="0C0" style="width:100px;"></th>
+                <th id="0C1" style="width:100px;"></th>
+                <th id="0C2" style="width:254px;"></th>
+                <th id="0C3" style="width:163px;"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr style="height: 20px">
+                <th id="0R0" style="height: 20px;"></th>
+                <td class="s0"></td>
+                <td class="s1">5 sep. </td>
+                <td class="s2">Villkor, att reagera på intryck från tangentbord och mus. Om vi hinner gör vi
+                    ett enkelt spel.</td>
+                <td class="s2">Övningsuppgifter lektion 2 i Canvas</td>
+            </tr>
+            <tr style="height: 20px">
+                <th id="0R1" style="height: 20px;"></th>
+                <td class="s3"></td>
+                <td class="s3"></td>
+                <td class="s3"></td>
+                <td class="s3"></td>
+            </tr>
+            <tr style="height: 20px">
+                <th id="0R2" style="height: 20px;"></th>
+                <td class="s4">V</td>
+                <td class="s4">Datum</td>
+                <td class="s4">Innehåll</td>
+                <td class="s4">Uppgifter</td>
+            </tr>
+            <tr style="height: 20px">
+                <th id="0R3" style="height: 20px;"></th>
+                <td class="s5">34</td>
+                <td class="s6">fre 25 aug. </td>
+                <td class="s7">Introduktion, lite enkla program med hjälp av <span
+                        style="text-decoration:underline;-webkit-text-decoration-skip:none;text-decoration-skip-ink:none;color:#1155cc;"><a
+                            target="_blank" rel="noreferrer"
+                            href="https://www.google.com/url?q=http://koda.nu/&amp;sa=D&amp;source=editors&amp;ust=1693947403096117&amp;usg=AOvVaw2sN6jbcLopWZ1oILRiXXTK">koda.nu</a></span>
+                </td>
+                <td class="s8">Övningsuppgifter lektion 1 i Canvas</td>
+            </tr>
+            <tr style="height: 20px">
+                <th id="0R4" style="height: 20px;"></th>
+                <td class="s5">35</td>
+                <td class="s6">fre 1 sep. </td>
+                <td class="s7">Villkor, att reagera på intryck från tangentbord och mus. Om vi
+                    hinner gör vi ett enkelt spel.</td>
+                <td class="s8">Övningsuppgifter lektion 2 i Canvas</td>
+            </tr>
+            <tr style="height: 20px">
+                <th id="0R5" style="height: 20px;"></th>
+                <td class="s5">36</td>
+                <td class="s9">fre 8 sep. </td>
+                <td class="s7">Loopar</td>
+                <td class="s10"></td>
+            </tr>
+            <tr style="height: 20px">
+                <th id="0R6" style="height: 20px;"></th>
+                <td class="s5">37</td>
+                <td class="s9">fre 15 sep. </td>
+                <td class="s7"></td>
+                <td class="s10"></td>
+            </tr>
+            <tr style="height: 20px">
+                <th id="0R7" style="height: 20px;"></th>
+                <td class="s5">38</td>
+                <td class="s9">fre 22 sep. </td>
+                <td class="s7"></td>
+                <td class="s10"></td>
+            </tr>
+            <tr style="height: 20px">
+                <th id="0R8" style="height: 20px;"></th>
+                <td class="s5">39</td>
+                <td class="s9">fre 29 sep. </td>
+                <td class="s7"></td>
+                <td class="s7"></td>
+            </tr>
+            <tr style="height: 20px">
+                <th id="0R9" style="height: 20px;"></th>
+                <td class="s5">40</td>
+                <td class="s9">fre 6 okt. </td>
+                <td class="s7"></td>
+                <td class="s10"></td>
+            </tr>
+            <tr style="height: 20px">
+                <th id="0R10" style="height: 20px;"></th>
+                <td class="s5">41</td>
+                <td class="s9">fre 13 okt. </td>
+                <td class="s7"></td>
+                <td class="s10"></td>
+            </tr>
+            <tr style="height: 20px">
+                <th id="0R11" style="height: 20px;"></th>
+                <td class="s5">42</td>
+                <td class="s9">fre 20 okt. </td>
+                <td class="s7"></td>
+                <td class="s10"></td>
+            </tr>
+            <tr style="height: 20px">
+                <th id="0R12" style="height: 20px;"></th>
+                <td class="s5">43</td>
+                <td class="s9">fre 27 okt. </td>
+                <td class="s7"></td>
+                <td class="s10"></td>
+            </tr>
+            <tr style="height: 20px">
+                <th id="0R13" style="height: 20px;"></th>
+                <td class="s5">44</td>
+                <td class="s9">fre 3 nov. </td>
+                <td class="s11">Höstlov</td>
+                <td class="s10"></td>
+            </tr>
+            <tr style="height: 20px">
+                <th id="0R14" style="height: 20px;"></th>
+                <td class="s5">45</td>
+                <td class="s9">fre 10 nov. </td>
+                <td class="s7"></td>
+                <td class="s10"></td>
+            </tr>
+            <tr style="height: 20px">
+                <th id="0R15" style="height: 20px;"></th>
+                <td class="s5">46</td>
+                <td class="s9">fre 17 nov. </td>
+                <td class="s7"></td>
+                <td class="s10"></td>
+            </tr>
+            <tr style="height: 20px">
+                <th id="0R16" style="height: 20px;"></th>
+                <td class="s5">47</td>
+                <td class="s9">fre 24 nov. </td>
+                <td class="s7"></td>
+                <td class="s10"></td>
+            </tr>
+            <tr style="height: 20px">
+                <th id="0R17" style="height: 20px;"></th>
+                <td class="s5">48</td>
+                <td class="s9">fre 1 dec. </td>
+                <td class="s7"></td>
+                <td class="s10"></td>
+            </tr>
+            <tr style="height: 20px">
+                <th id="0R18" style="height: 20px;"></th>
+                <td class="s5">49</td>
+                <td class="s9">fre 8 dec. </td>
+                <td class="s7"></td>
+                <td class="s10"></td>
+            </tr>
+            <tr style="height: 20px">
+                <th id="0R19" style="height: 20px;"></th>
+                <td class="s5">50</td>
+                <td class="s9">fre 15 dec. </td>
+                <td class="s0"></td>
+                <td class="s10"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
