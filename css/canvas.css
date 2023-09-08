@@ -16,6 +16,9 @@ h1, h2 {
 h3 {
     font-weight: bold;
 }
+p {
+    line-height: 1.5;
+}
 pre {
     font-size: 12px;
     font-family: "Monaco", monospace;
@@ -67,7 +70,7 @@ ul.menu li a {
     display: block;
     padding: 8px 0 8px 6px;
 }
-ul {
+ul, ol {
     padding: 0;
     margin-left: 25px;
 }

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="icon" type="image/x-icon" href="/favicon.png">
+        <link rel="stylesheet" href="/css/canvas.css">
+        <script src="/libs/jquery-3.7.1.min.js"></script>
+        <script src="/js/canvas.js"></script>
+    </head>
+    <body>
+        <div id="menu"></div>
+        <div id="content">
+            <h1 id="heading">Loopar</h1>
+            <hr>
+            <h2>Loopar</h2>
+            <p>När vi behöver upprepa en kod flera gånger kan loopar vara en lösning på problemet. I JavaScript har vi flera möjligheter att skapa loopar, vi tittar närmare på två av dem.</p>
+            <h2>for-loopen</h2>
+            <p>Om vi vet hur många gånger vi vill upprepa något så passar <code>for</code>-loopen bäst.</p>
+            <pre>
+for (i = 1; i&lt;=5; i++){
+    text(10, i*25, 20, "Talet är : " + i , "orange");
+}</pre>
+            <h2>while-loopen</h2>
+            <p>Ibland vill vi att ett visst villkor ska vara uppfyllt för att vi ska avbryta en loop, då passar <code>while</code>-loopen bäst.</p>
+            <pre>
+let x = 100;
+let radie = 20
+while (radie &lt;= 500){
+    circle(x, 100, radie, "orange");
+    x += 100;
+    radie=random(600);
+}</pre>
+            <hr>
+        </div>
+    </body>
+</html>
