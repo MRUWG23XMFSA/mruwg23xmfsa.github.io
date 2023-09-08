@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="icon" type="image/x-icon" href="/favicon.png">
+        <link rel="stylesheet" href="/css/canvas.css">
+        <script src="/libs/jquery-3.7.1.min.js"></script>
+        <script src="/js/canvas.js"></script>
+    </head>
+    <body>
+        <div id="menu"></div>
+        <div id="content">
+            <h1 id="heading">Lektion 2.1 - En kort introduktion til objekt</h1>
+            <hr>
+            <p>JavaScript är som de flesta moderna programmeringspråk <b>objektorienterat</b>. Det är ett stort område i sig och vi ska inte fördjupa oss mycket i detta i den här kursen. Vi ska använda oss av objekt som ett smidigt sätt att deklarera variabler.</p>
+            <p>Om vi tänker oss att vi har ett objekt som beskriver en boll kan vi skapa ett objekt som heter <code>boll</code>. En boll kan många olika egenskaper, den har en position i x-led oche y-led, en radie och en färg</p>
+            <p>Om vi definerar ett objekt skulle vår kod kunna se ut så här:</p>
+            <pre>
+ball = {}
+ball.x = 100;
+ball.y = 200;
+ball.size = 20;
+ball.color = "BlanchedAlmond";
+# Rita en cirkel
+circle(ball.x, ball.y, ball.size, ball.color);</pre>
+            <p>Det är vanligare att man skriver allt detta lite mer kompakt</p>
+            <pre>
+ball = {x: 100, y: 200, size: 20, color: “red”}
+circle(ball.x, ball.y, ball.size, ball.color);</pre>
+            <hr>
+        </div>
+    </body>
+</html>

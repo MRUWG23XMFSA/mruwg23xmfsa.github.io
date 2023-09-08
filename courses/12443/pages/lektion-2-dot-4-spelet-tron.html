@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="icon" type="image/x-icon" href="/favicon.png">
+        <link rel="stylesheet" href="/css/canvas.css">
+        <script src="/libs/jquery-3.7.1.min.js"></script>
+        <script src="/js/canvas.js"></script>
+    </head>
+    <body>
+        <div id="menu"></div>
+        <div id="content">
+            <h1 id="heading">Lektion 2.4 Spelet Tron</h1>
+            <hr>
+            <p>Ett av de tidigaste datorspelen är TRON. Spelet gav inspiration till en film från 1982. Spelaren har en cykel som lämnar ett spår i form av ett streck, man får inte krocka med sitt spår eller spelets kanter.</p>
+            <img src="/courses/12443/files/image-2.png" alt="image.png" width="200">
+            <p>Som du kan se i koden är det inte så många rader kod som krävs för att skapa ett spel med poängräkning.</p>
+            <p>Vår kod börjar med att <code>start</code>-funktionen ritar upp spelplanen och skapar själva cykeln som har flera egenskaper. Därefter kommer <code>update</code> funktionen som ritar ut cykeln, uppdaterar poängen, kontrollerar om vi bytt riktning samt slutligen testar vi om vi krockat med oss själva eller kanterna.</p>
+            <p>För att rita spelplanen behöver vi veta hur stor användarens skärm är. Variablerna <code>totalWidth</code> och <code>totalHeight</code> innehåller exakt det som namnen antyder.</p>
+            <pre>
+
+function start(){
+    cycle = {x:20, y:250, xSpeed: 1, ySpeed: 0, score: 0, size: 5}
+    //Rita en ram runt skärmen
+    line(0,0, totalWidth, 0 ,10 , "blue");
+    line(0,0, 0, totalHeight, 10, "blue");
+    line(0,totalHeight, totalWidth, totalHeight, 10, "blue");
+    line(totalWidth, 0 , totalWidth, totalHeight, 10, "blue");
+    // En linje för att skilja ut området för score
+    line(0,100, totalWidth, 100 ,10 , "blue");
+}
+    
+function update(){
+    rectangle(cycle.x, cycle.y, cycle.size, cycle.size, "blue");
+    // Öka poängen med 1
+    cycle.score ++;
+    // Sudda ut den gamla scoren
+    rectangle(10,10, totalWidth - 20, 80, "white");
+    // Skriven en ny score
+    text(20,75, 40, "TRON  |  Score: " + cycle.score, "black");
+    //Kontrollera om någon piltangent trycks ned och ändra rikting
+    if (keyboard.left) { cycle.xSpeed = -1; cycle.ySpeed = 0; }
+    if (keyboard.right) { cycle.xSpeed = 1; cycle.ySpeed = 0; }
+    if (keyboard.up) { cycle.xSpeed = 0; cycle.ySpeed = -1; }
+    if (keyboard.down) { cycle.xSpeed = 0; cycle.ySpeed = 1; }
+    //Uppdatera cykeln
+    cycle.x += cycle.xSpeed*cycle.size;
+    cycle.y += cycle.ySpeed*cycle.size;
+
+    // Kolla om vi träffat en blått streck, då är spelet slut..
+    if (getPixel(cycle.x, cycle.y).blue != 0) {
+        rectangle(cycle.x, cycle.y, cycle.size, cycle.size, "red");
+        alert("Game Over!");
+        stopUpdate();
+    }
+}
+            </pre>
+            <hr>
+        </div>
+    </body>
+</html>

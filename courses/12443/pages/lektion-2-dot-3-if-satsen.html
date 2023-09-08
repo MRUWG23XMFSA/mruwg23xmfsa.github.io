@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="icon" type="image/x-icon" href="/favicon.png">
+        <link rel="stylesheet" href="/css/canvas.css">
+        <script src="/libs/jquery-3.7.1.min.js"></script>
+        <script src="/js/canvas.js"></script>
+    </head>
+    <body>
+        <div id="menu"></div>
+        <div id="content">
+            <h1 id="heading">Lektion 2.3 If-satsen</h1>
+            <hr>
+            <h2>Villkor</h2>
+            <p>Ett vanligt kommando för att kontrollera villkor är if-satsen. Vi ställer t ex frågan om en person är myndig genom att kontrollollera om en person är unde18 år. Om vi vill att vårt program ska ställa en fråga kan vi använda kommandot <code>prompt</code></p>
+            <p>Pröva koden nedan och se till att du förstår hur den fungerar. If-satsen följs alltid av ett block, dvs vi måste använda klammer (måsvingar) även om det bara är en rad som ska utförast.</p>
+            <pre>
+function start() {
+    var name = prompt("Hej, vad heter du?");
+    var age = prompt("Hur gammal är du?");
+    text(50, 150, 20, "Hej " + name + "!", "black");    
+    if (age &lt; 18) {
+        text(50, 250, 20, "Du är inte myndig" , "black");
+    }
+    else {
+        text(50, 250, 20, "Du är myndig" , "black");
+    }
+}</pre>
+            <h2>jämförelseoperatorer i JavaScript</h2>
+            <p>Om vi vill jämföra om talet a är lika med 3 måste vi JavaScript använda dubbla likhetstecken.</p>
+            <pre>
+if a == 3 {
+    text(50, 150, 20,"a är lika med 3", "blue");
+}
+else {
+    text(50, 150, 20,"a är inte lika med 3", "red");
+}</pre>
+            <h2>Tabell med jämförelseoperationer</h2>
+            <table>
+                <tbody>
+                    <tr>
+                        <th>Beskrivning</th>
+                        <th>Operator</th>
+                    </tr>
+                    <tr>
+                        <td>Lika med</td>
+                        <td>==</td>
+                    </tr>
+                    <tr>
+                        <td>Mindre än</td>
+                        <td>&lt;</td>
+                    </tr>
+                </tbody>
+                <tbody>
+                    <tr>
+                        <td>Mindre än eller lika med</td>
+                        <td>&lt;=</td>
+                    </tr>
+                    <tr>
+                        <td>Större än</td>
+                        <td>&gt;</td>
+                    </tr>
+                    <tr>
+                        <td>Större än eller lika med</td>
+                        <td>&gt;=</td>
+                    </tr>
+                    <tr>
+                        <td>Inte lika med</td>
+                        <td>!=</td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="icon" type="image/x-icon" href="/favicon.png">
+        <link rel="stylesheet" href="/css/canvas.css">
+        <script src="/libs/jquery-3.7.1.min.js"></script>
+        <script src="/js/canvas.js"></script>
+    </head>
+    <body>
+        <div id="menu"></div>
+        <div id="content">
+            <h1 id="heading">Lektion 2.2 - Animering</h1>
+            <hr>
+            <p>En rörelse på en datorskärm är helt enkelt flera stillbilder ritade efter varandra. Det är ingen skillnad på hur t ex en film eller en tv-bild uppdateras. Om vi byter bild tillräckligt ofta så upplever vår hjärna en rörelse. I <code>simple.js</code> biblioteket finns en färdig funktion som heter <code>update</code> för att rita om innehållet på skärmen. Om vill att vår boll ska röra sig över skärmen så kan vi pröva följande kod</p>
+            <pre>
+function start() {
+    ball = {x: 0, y:0}
+}
+
+function update() {
+    circle(ball.x, ball.y , 35, "blue");
+    ball.x++;
+    ball.y++;
+}</pre>
+            <p>Om vi vill att spåret efter bollen inte ska synas behöver vi börja uppdateringen med att rensa skärmen och rita allt på nytt igen.</p>
+            <pre>
+function update() {
+    clearScreen()
+    circle(ball.x, ball.y , 35, "blue");
+    ball.x++;
+    ball.y++;
+}</pre>
+            <p>Uppdateringshastigheten kan styras via varabeln <code>updatesPerSecond</code>. Denna variabel är till början satt till 30, vilket innebär att skärmen uppdateras 30 gånger per sekund. Du kan ändra den men en väldigt hög uppdateringshastighet kommer vara tungt för datorn.</p>
+            <p>Man kan stoppa funktionen <code>update</code> genom att kalla på funktionen . Det kan vara användbart när användaren förlorat i ett spel.</p>
+            <hr>
+        </div>
+    </body>
+</html>
