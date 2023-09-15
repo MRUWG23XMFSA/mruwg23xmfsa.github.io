@@ -58,6 +58,11 @@ div {
     width: 192px;
     background: white;
 }
+table, td {
+    border-collapse: collapse;
+    border: 1px solid;
+    padding: 2px;
+}
 ul.menu {
     padding: 0;
     margin: 0;
