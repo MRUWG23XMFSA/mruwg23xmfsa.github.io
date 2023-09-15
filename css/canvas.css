@@ -60,8 +60,10 @@ div {
 }
 table, td {
     border-collapse: collapse;
-    border: 1px solid;
     padding: 2px;
+}
+.border td {
+    border: 1px solid black;
 }
 ul.menu {
     padding: 0;
