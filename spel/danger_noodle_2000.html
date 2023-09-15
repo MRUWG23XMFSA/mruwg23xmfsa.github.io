@@ -32,6 +32,7 @@
             var bgColor = "black"; // Bakgrundsfärg
 
             var points = 0; // Poäng
+            var pointsMultiplier = 1; // Multiplikator för poängen
             var xMove = 0; // Rörelse i x-led (0, snakeSpacing eller -snakeSpacing)
             var yMove = 0; // Rörelse i y-led (0, snakeSpacing eller -snakeSpacing)
             var tickSpeed; // delay för setTimeout() i millisekunder, längden på ett "tick" i programmet. Bestäms i game();
@@ -91,28 +92,39 @@
                 ctx.fillStyle = bgColor;
                 ctx.fillRect(0, 0, canvas.width, canvas.height); // Ny bakgrund
 
-                tickSpeed = 2000 / (snakeSpeed + 15); // f(x)=((2000)/(x+15)), bra funktion för lagom hastighetsökning. Sponsrat av GeoGebra
-
+                tickSpeed = 16000 / (11 * snakeSpeed + 90);
+                // f(x)=((2000)/(x+15)) är en bra funktion för lagom hastighetsökning vid i+=5. Sponsrat av GeoGebra
+                // f(x)=((1600)/(x+10))
+                
                 // I HÄNDELSE AV KONSUMERAD MAT
-                if (trail[0].x >= food[0].x - snakeChonk && trail[0].x <= food[0].x + snakeChonk && trail[0].y >= food[0].y - snakeChonk && trail[0].y <= food[0].y + snakeChonk) { 
+                if (trail[0].x + snakeChonk >= food[0].x && 
+                    trail[0].x - snakeChonk <= food[0].x && 
+                    trail[0].y + snakeChonk >= food[0].y && 
+                    trail[0].y - snakeChonk <= food[0].y) { 
                     food[0] = {x: Math.floor(Math.random() * canvas.width / 10) * 10, y: Math.floor(Math.random() * canvas.height / 10) * 10};
                     snakeChonk++;
-                    points++;
+                    points += pointsMultiplier;
                     // foodChonk++;
                 }
-                if (trail[0].x >= food[1].x - snakeChonk && trail[0].x <= food[1].x + snakeChonk && trail[0].y >= food[1].y - snakeChonk && trail[0].y <= food[1].y + snakeChonk) {
+                if (trail[0].x + snakeChonk >= food[1].x && 
+                    trail[0].x - snakeChonk <= food[1].x && 
+                    trail[0].y + snakeChonk >= food[1].y && 
+                    trail[0].y - snakeChonk <= food[1].y) {
                     food[1] = {x: Math.floor(Math.random() * canvas.width / 10) * 10, y: Math.floor(Math.random() * canvas.height / 10) * 10};
-                    snakeSpeed = snakeSpeed + 5;
-                    points += 4;
+                    snakeSpeed++;
+                    pointsMultiplier++;
+                    points += pointsMultiplier;
                 }
-                if (trail[0].x >= food[2].x - snakeChonk && trail[0].x <= food[2].x + snakeChonk && trail[0].y >= food[2].y - snakeChonk && trail[0].y <= food[2].y + snakeChonk) {
+                if (trail[0].x + snakeChonk >= food[2].x && 
+                    trail[0].x - snakeChonk <= food[2].x && 
+                    trail[0].y + snakeChonk >= food[2].y && 
+                    trail[0].y - snakeChonk <= food[2].y) {
                     food[2] = {x: Math.floor(Math.random() * canvas.width / 10) * 10, y: Math.floor(Math.random() * canvas.height / 10) * 10};
                     trail.push({x: trail[trail.length - 1].x + xMove, y: trail[trail.length - 1].y + yMove}); 
-                    points += 2;
+                    snakeLength = trail.length; // snakeLength bestämmer inte ormens längd (endast initialt), utan snakeLength bestäms av längden på arrayn "trail". Detta förenklar koden (ett system för arrayn att följa ett fullt variabelt värde är mycket komplext i detta fall)
+                    points += pointsMultiplier;
                 }
                 // Kanske ta tillbaka else här (eller gör EPILEPSI EDITION och WUSS EDITION, gör enfärgad eller fasta färger för masken)
-
-                snakeLength = trail.length; // snakeLength bestämmer inte ormens längd (endast initialt), utan snakeLength bestäms av längden på arrayn "trail". Detta förenklar koden (ett system för arrayn att följa ett fullt variabelt värde är mycket komplext i detta fall)
 
                 // RENDERA
                 for (i in trail) {
@@ -163,9 +175,9 @@
                 }
 
                 // I HÄNDELSE AV FÖRLUST
-                for (i in trail) {
-                    if (trail[0].x == trail[i].x && trail[0].y == trail[i].y && false) {
-                        throw "ÄT SKIT!";
+                for (i = 1; i < trail.length; i++) {
+                    if (trail[0].x == trail[i].x && trail[0].y == trail[i].y) {
+                        
                     }
                 }
             }
@@ -179,10 +191,6 @@
                 setTimeout(clock, tickSpeed);
             } 
             clock();
-
-// LÄGG TILL: Förlora om man går in i sig själv
-// LÄGG TILL: Poängsystemet: Gör så att högre hastigheter ökar poängen per matbit, tjockare orm ger lite lägre poäng per matbit, och längre orm ger lite mer poäng per matbit
-// IF EX. TRAIL[0].X + SNAKECHONK!!!!!! ANNARS BLIR DET SKUMT. DET ÄR BÅDA CIRKLARNAS KANT SOM SKA TESTAS FÖR, ALLTSÅ MÅSTE MAN TA RADIEN FÖR BÅDA!
 
             // DEBUG-MENY
             var debugOpen = false;
