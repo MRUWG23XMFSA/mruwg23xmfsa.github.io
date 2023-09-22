@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Kanorvas JS-Mög</title>
+        <meta charset="UTF-8">
+        <base target="_blank">
+        <link rel="icon" type="image/x-icon" href="/favicon.png">
+        <link rel="stylesheet" href="/css/main.css">
+        <script src="/libs/jquery-3.7.1.min.js"></script>
+        <script src="/js/hfmain.js"></script> 
+    </head>
+    <body>
+        <header id="header"></header>
+        <div>
+            <!-- <p>Här är det tomt än så länge. Allt finns just nu på förstasidan.</p> -->
+
+            <h3>KODLABBET OCH KODA.NU</h3>
+            <p>I kursen används <a href="https://koda.nu/simple.js">simple.js</a> från <a href="https://koda.nu/labbet">koda.nu/labbet</a> som script-source, vilket lägger till <a href="kodlabbet/kodlabbet_api.html">massa förenklade funktioner</a> som gör det betydligt lättare att koda. <b>Glöm det.</b> Jag kör ren JS och HTML, <i>the way God intended</i>. 
+            Kodlabbet är för övrigt en jättegammal sida, vilket förvisso inte säger så mycket, men de kallar dokumentationen av simple.js för "API", så deras leksaks-script får inte äran att sponsra min kod.
+            Det enda som är ballt med Kodlabbets script sources är att man på enkel väg kan <a href="http://koda.nu/labbet/guide/3d_animering">koda 3D-grafik</a>, vilket fungerar med hjälp av en annan script source, <a href="https://koda.nu/simple3d.js">simple3d.js</a>, som bygger på <a href="https://threejs.org/">ThreeJS</a>. Så lite beröm ska de väl ändå få.
+            
+            <p>Utöver allt detta har jag tagit fram massa scripter och grejer som de använder och dumpat alltsammans längst ned på den här sidan. Turbonördar som jag blir väldigt exalterade av sådant.</p>
+            <p>Förresten så använder Kodlabbet jQuery för dialogerna, så kör <code>$("#dialog_api").dialog("open");</code> på Kodlabbet i webbläsarkonsollen för att öppna API-dialogen utan att trycka på knappen. Anledningen till att jag vet detta är för att jag har försökt öppna dialogen automatiskt när man öppnar Kodlabbet via en länk på den här sidan, men det lär innefatta XSS och är ganska träligt att åstadkomma. Så skit i det.</p>
+
+            <h3>VSCODE</h3>
+            <p>Efter viss tid började kursen gå från att använda Kodlabbet till att använda <a href="https://code.visualstudio.com/">VSCode</a>, och samtidigt gå in på att programmera på riktigt, d.v.s. utan simple.js. Själv har jag såklart kört med VSCode sedan första början, så intet nytt från västfronten för min del.</p>
+            <p>Det var däremot inte förrän vi skulle ha första programmeringslektionen som jag ens installerade VSCode. Tidigare har jag alltid kört i <a href="https://github.com/atom/atom">Atom</a>, men efter att <a href="https://github.blog/2022-06-08-sunsetting-atom/">projektet dödades</a> och blev ett med intet (gigantisk sorg, det fungerade som VSCode fast utan Microsoft involverat) hade jag inget vettigt att koda i, annat än med TextEdit och ett lokalt environment (jag har Mac, annars gäller Notepad++ alla dagar i veckan). Jag funderade ett tag på att använda <a href="https://unkertmedia.com/the-pulsar-text-editor-the-successor-to-atom/">Pulsar</a>, en uppföljare till Atom som fungerar likadant, men då insåg jag att VSCode trots allt är jävligt mycket bättre, så på den vägen är det.</p>
+            
+            <h3>CHROMEBOOKS <span style="color: white;">(ASTAGHFIRULLAH)</span></h3>
+            <p>Det som är fantastiskt roligt är att flera i klassen har Chromebooks via skolan, och Chromebooks är inte riktiga datorer. Faktum är att du inte kan installera program på en Chromebook, så folk med Chromebooks kan inte installera VSCode, utan måste i så fall använda webbversionen. Detta medför dock att man inte kan använda vissa extensions, däribland Live View, vilket är en ganska stor begränsning när vi kodar i JS. Så folk med Chromebooks är heligt rövkörda. Dessutom är allas Chromebooks så långsamma att när man öppnar en fil i webbvarianten av VSCode så behöver man vänta på att textens color coding ska ladda in, färg för färg, vilket tar flera sekunder.</p>
+            <p>Detta är dock bara ett stickprov av hur värdelösa Chromebooks är. Jag påminns varje dag av hur spastiskt förlamade Chromebooks är när skolans IT-snubbe alltid behöver skicka ut separata instruktioner för Chromebooks när han gör informationsutskick. Jag nämnde Chromebooks för honom en gång och han svarade "Don't mention the war". Stackarn måste handskas med att man på Chromebooks inte kan installera de program vi skriver proven i (ja, svenska skolor hatar papper) så programmen kommer förinstallerade på allas Chromebooks genom något tekniskt voodoo som skolan lagt in. Och för att inte tala om alla gånger jag har behövt hjälpa folk som inte kan skriva ut saker på elevskrivaren för att man inte kan installera drivrutiner på en Chromebook. Dessutom är filhanteringen på Chromebooks praktiskt taget icke-existent eftersom allt är molnbaserat, och om den minimala internlagringen som faktiskt finns råkar bli full börjar den automatiskt radera gamla data för att få plats, något som låter som mormors gamla externa bootleg-disk från 1999. Kanske det värsta av allt är att Chromebooks är så fantastiskt slöa och underklockade att de till och med har problem att köra Googles egna webbprogram. Jag har många gånger sett Google Docs lagga på dem. En Chromebook är en fysisk webbläsare, och även då hade jag hellre använt Edge. Fast där kanske jag var lite för hård. Edge suger skummande råttpiss.</p>
+        </div> 
+        <hr>
+        <div>
+            <h3>NÅGRA AV KODLABBETS SKRIPTER</h3>
+            <p>Kodlabbet använder massa skripter och assets, och många av dessa kommer från ställen som jag listat nedan. Jag har också nördat fram var koda.nu har fått flera av sina libs, texturer etc. från. Det finns mer göttiga filer att undersöka än vad som står här, men någonstans måste man dra ett streck, som min käre mor brukade säga när jag satt uppe till gryningen med liknande göromål.</p>
+            <table>
+                <tr>
+                    <th>Skript</th>
+                    <th>Beskrivning</th>
+                </tr>
+                <tr>
+                    <td><a href="https://koda.nu/simple.js">simple.js</a></td>
+                    <td>Central 2D-skript. Innehåller central kod som samlar alla funktioner.</td>
+                </tr>
+                <tr>
+                    <td><a href="https://koda.nu/advanced.js">advanced.js</a></td>
+                    <td>Central 2D-skript. Andra halvan till simple.js, innehåller den verksamma baskoden där funktioner och sådant deklareras.</td>
+                </tr>
+                <tr>
+                    <td><a href="https://koda.nu/simple3d.js">simple3d.js</a></td>
+                    <td>Central 3D-skript.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://www.koda.nu/libs/threejs/three83.js">three83.js</a><br>
+                        <a href="https://www.koda.nu/libs/threejs/pointerlock.js">pointerlock.js</a><br>
+                        <a href="https://www.koda.nu/libs/threejs/objloader.js">objloader.js</a>
+                    </td>
+                    <td>Skripter från ThreeJS, 3D-biblioteket som Kodlabbet utgår från.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://www.koda.nu/libs/codemirror/addon/display/fullscreen.js">fullscreen.js</a><br>
+                    </td>
+                    <td>En av VÄLDIGT många filer Kodlabbet använder från CodeMirror. Se <a href="https://www.koda.nu/libs/codemirror/addon/">/libs/codemirror/addon</a> (det finns mer i codemirror/mode och codemirror/lib också)</td>
+                </tr>
+                <p>Alla skripter, tillsammans med lite annat som t.ex. <a href="https://www.koda.nu/libs/api_2d_sv.json">"API"-dokumentationen</a>, hittas i <a href="https://www.koda.nu/libs/">koda.nu/libs</a> och dess subdirectories. Enda undantaget är simple.js och advanced.js. Just <a href="https://www.koda.nu/libs/codemirror/">/libs/codemirror</a> (biblioteket för text editorn) har en index-sida, så den får man komma åt på annat sätt. Allting har jag hittat genom Network-tabben i Inspect Element.</p>
+            </table>
+            <h3>NÅGRA AV KODLABBETS ASSETS</h3>
+            <p>Alla texturer och 3D-modeller kan hittas på <a href="https://koda.nu/bilder/">koda.nu/bilder</a> respektive <a href="https://koda.nu/obj/">koda.nu/obj</a>. Vet inte om det finns ytterligare subdirectories men det gör det säkert. I fallet av bilderna verkar vissa saker vara fotade av koda.nu själva, men vissa saker som exempelvis <a href="https://koda.nu/bilder/3d/ground.png">ground.png</a> har hämtats från <a href="https://opengameart.org/node/8070">OpenGameArt</a>. Har inte orkat kolla närmare på resten men jag förmodar att samma sak gäller för mycket annat där också. Se några assets <i>in action</i> i Kodlabbets <a href="http://koda.nu/labbet/guide/3d_animering">3D-mall</a>.</p>
+        </div>
+        <footer id="footer"></footer>
+    </body>
+</html>
