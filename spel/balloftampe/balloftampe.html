@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>KLOTET AV TAMPE</title>
+        <meta charset="UTF-8">
+        <style>
+            canvas {
+                border: 6px silver;
+                border-style: outset;
+            }
+        </style>
+        <script type="importmap">
+            {
+                "imports": {
+                    "three": "/libs/threejs/three.module.min.js"
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <script type="module">
+            import * as THREE from 'three';
+
+            const frameWidth = 800;
+            const frameHeight = 500;
+            var fov = 75;
+
+            const scene = new THREE.Scene();
+
+            const camera = new THREE.PerspectiveCamera(fov, frameWidth / frameHeight, 0.1, 1000);
+
+            const renderer = new THREE.WebGLRenderer();
+            renderer.setSize(frameWidth, frameHeight);
+            document.body.appendChild(renderer.domElement);
+            renderer.domElement.id = "threeCanvas";
+
+            const light = new THREE.PointLight(0xffffff, 20000);
+            light.position.set(20, 20, 100);
+            scene.add(light);
+
+            const geometryBall = new THREE.SphereGeometry(10, 16, 16);
+
+            const materialBall = new THREE.MeshStandardMaterial();
+
+            const textureBall = new THREE.TextureLoader().load("balloftampe.png");
+            textureBall.magFilter = THREE.NearestFilter;
+
+            const ball = new THREE.Mesh(geometryBall, materialBall);
+            materialBall.map = textureBall;
+
+            scene.add(ball);
+
+            camera.position.z = 20;
+            // ball.rotation.y = -1.5;
+
+            function animate() {
+                requestAnimationFrame(animate);
+
+                // ball.rotation.x += 0.01;
+                ball.rotation.y += 0.01;
+                
+                renderer.render(scene, camera);
+            }
+
+            animate();
+        </script>
+        <!-- <p>&copy 2023 Krav "Kuken" Kanorva Spelfabrik GmbH. Alla rätter konsumeras.</p> -->
+        <!-- <p>&copy 2023 Homofila Analdaller AB</p> -->
+    </body>
+</html>
