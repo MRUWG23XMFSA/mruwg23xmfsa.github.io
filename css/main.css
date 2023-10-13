@@ -39,8 +39,7 @@ div {
 }
 iframe {
     display: block;
-    margin-left: auto;
-    margin-right: auto;
+    margin: auto;
     margin-block-start: 1.25em;
     margin-block-end: 1.25em;
 }
@@ -66,6 +65,14 @@ blockquote p {
     font-size: 14pt;
     margin-top: 0;
 }
+/*
+blockquote p::before {
+    content: open-quote; 
+}
+blockquote p::after {
+    content: close-quote;
+}
+*/
 table {
     border-collapse: collapse;
     margin-top: 10px;
