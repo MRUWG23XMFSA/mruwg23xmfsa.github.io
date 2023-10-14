@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Inlämningsuppgift 1 - INTERAKTIV</title>
+        <meta charset="UTF-8">
+        <style>
+            canvas {
+                border: 6px silver;
+                border-style: outset;
+            }
+        </style>
+    </head>
+    <body>
+        <div style="width: 360px;">
+            <canvas id="canvas" width="340" height="340"></canvas>
+            <table style="text-align: left;">
+                <tr><td>x:</td><td><input type="number" value="170" id="x"></td></tr>
+                <tr><td>y:</td><td><input type="number" value="150" id="y"></td></tr>
+                <tr><td>radius:</td><td><input type="range" min="1" max="600" value="80" id="radius"></td></tr>
+                <tr><td>feet:</td><td><input type="range" min="1" max="10" value="4" id="feet"></td></tr>
+                <tr><td>fillColor:</td><td><input type="color" value="#ff0000" id="fillColor"></td></tr>
+                <tr><td>strokeColor:</td><td><input type="color" value="#ffffff" id="strokeColor"></td></tr>
+                <tr><td>strokeWidth:</td><td><input type="range" min="0" max="32" value="5" id="strokeWidth"></td></tr>
+            </table>
+            <script>
+                /*
+                Inlämningsuppgift 1 - "Spöke"
+                Namn: Kimi Kanerva
+
+                INTERAKTIV VERSION. Kodad för demonstrationsändamål
+                */
+                
+                const ctx = document.getElementById("canvas").getContext("2d");
+
+                ctx.fillStyle = "black";
+                ctx.fillRect(0, 0, canvas.width, canvas.height); // Bakgrund
+                    
+                function drawGhost(x, y, radius, feet, fillColor, strokeColor, strokeWidth) {
+                    ctx.beginPath();
+                    ctx.fillStyle = fillColor;
+                    ctx.strokeStyle = strokeColor;
+                    ctx.lineWidth = strokeWidth;
+
+                    // Huvud
+                    ctx.arc(x, y, radius, Math.PI, 2 * Math.PI);
+
+                    // Fötter
+                    for (i = feet; i > 0; i--) {
+                        ctx.arc(
+                            (x - radius) + (i * (radius / feet * 2)) - (radius / feet), 
+                            y + 1.25 * radius, 
+                            radius / feet,
+                            0, 
+                            Math.PI
+                        );
+                    }
+                    ctx.closePath();
+                    ctx.fill();
+                    ctx.stroke();
+
+                    // Ögon
+                    ctx.beginPath(); 
+                    ctx.fillStyle = "white";
+                    ctx.arc(x - radius / 3, y - radius / 12, radius / 3, 0, 2 * Math.PI);
+                    ctx.arc(x + radius / 2, y - radius / 12, radius / 3, 0, 2 * Math.PI);
+                    ctx.fill();
+                    ctx.closePath();
+
+                    ctx.beginPath(); 
+                    ctx.fillStyle = "black";
+                    ctx.arc(x - radius / 3, y, radius / 6, 0, 2 * Math.PI);
+                    ctx.arc(x + radius / 2, y, radius / 6, 0, 2 * Math.PI);
+                    ctx.fill();
+                    ctx.closePath();
+                }
+                
+                setInterval(function() { 
+                    ctx.fillStyle = "black";
+                    ctx.fillRect(0, 0, canvas.width, canvas.height); // Ny bakgrund
+                    
+                    drawGhost(
+                        parseInt(document.getElementById("x").value), 
+                        parseInt(document.getElementById("y").value), 
+                        parseInt(document.getElementById("radius").value), 
+                        parseInt(document.getElementById("feet").value), 
+                        document.getElementById("fillColor").value, 
+                        document.getElementById("strokeColor").value, 
+                        parseInt(document.getElementById("strokeWidth").value)
+                    );
+                }, 4);
+            </script>
+        </div>
+    </body>
+</html>

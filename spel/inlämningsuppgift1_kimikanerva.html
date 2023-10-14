@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Inlämningsuppgift 1</title>
+        <meta charset="UTF-8">
+        <style>
+            canvas {
+                border: 6px silver;
+                border-style: outset;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id="canvas" width="480" height="480"></canvas>
+        <script>
+            /*
+            Inlämningsuppgift 1 - "Spöke"
+            Namn: Kimi Kanerva
+            */
+            
+            const ctx = document.getElementById("canvas").getContext("2d");
+
+            ctx.fillStyle = "black";
+            ctx.fillRect(0, 0, canvas.width, canvas.height); // Bakgrund
+                
+            function drawGhost(x, y, radius, feet, fillColor, strokeColor, strokeWidth) {
+                ctx.beginPath();
+                ctx.fillStyle = fillColor;
+                ctx.strokeStyle = strokeColor;
+                ctx.lineWidth = strokeWidth;
+
+                // Huvud
+                ctx.arc(x, y, radius, Math.PI, 2 * Math.PI);
+
+                // Fötter
+                for (i = feet; i > 0; i--) {
+                    ctx.arc(
+                        (x - radius) + (i * (radius / feet * 2)) - (radius / feet), 
+                        y + 1.25 * radius, 
+                        radius / feet,
+                        0, 
+                        Math.PI
+                    );
+                }
+                ctx.closePath();
+                ctx.fill();
+                ctx.stroke();
+
+                // Ögon
+                ctx.beginPath(); 
+                ctx.fillStyle = "white";
+                ctx.arc(x - radius / 3, y - radius / 12, radius / 3, 0, 2 * Math.PI);
+                ctx.arc(x + radius / 2, y - radius / 12, radius / 3, 0, 2 * Math.PI);
+                ctx.fill();
+                ctx.closePath();
+
+                ctx.beginPath(); 
+                ctx.fillStyle = "black";
+                ctx.arc(x - radius / 3, y, radius / 6, 0, 2 * Math.PI);
+                ctx.arc(x + radius / 2, y, radius / 6, 0, 2 * Math.PI);
+                ctx.fill();
+                ctx.closePath();
+            }
+            
+            drawGhost(canvas.width / 2, canvas.height / 2.2, 80, 4, "red", "white", 5);
+            drawGhost(80, 80, 40, 2, "blue", "white", 5);
+            drawGhost(400, 380, 40, 5, "green", "white", 5);
+
+            /*
+            TESTER
+
+            ctx.rect(x - radius, y, radius * 2, radius); // Kropp
+            stroke() raden ovan closePath() ger stroke i bakgrunden, inte som exemplet.
+
+            (x - radius) + (radius / feet) + (i * (radius / feet * 2))
+            ctx.arc((x - radius) + (radius / feet) + (i * (radius + strokeWidth) / 2), y + radius, radius / feet, 0, Math.PI);
+
+            Peters exempel:
+            Huvudets radie: 0.8
+            Höjden: (y +) radien
+            Inverterat: 5/4, 1.25
+            */
+        </script>
+    </body>
+</html>
