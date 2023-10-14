@@ -20,17 +20,17 @@
             <pre>
 
 function start(){
-    cycle = {x:20, y:250, xSpeed: 1, ySpeed: 0, score: 0, size: 5}
-    //Rita en ram runt skärmen
-    line(0,0, totalWidth, 0 ,10 , "blue");
-    line(0,0, 0, totalHeight, 10, "blue");
-    line(0,totalHeight, totalWidth, totalHeight, 10, "blue");
-    line(totalWidth, 0 , totalWidth, totalHeight, 10, "blue");
-    // En linje för att skilja ut området för score
-    line(0,100, totalWidth, 100 ,10 , "blue");
+  cycle = {x:20, y:250, xSpeed: 1, ySpeed: 0, score: 0, size: 5}
+  //Rita en ram runt skärmen
+  line(0,0, totalWidth, 0 ,10 , "blue");
+  line(0,0, 0, totalHeight, 10, "blue");
+  line(0,totalHeight, totalWidth, totalHeight, 10, "blue");
+  line(totalWidth, 0 , totalWidth, totalHeight, 10, "blue");
+  // En linje för att skilja ut området för score
+  line(0,100, totalWidth, 100 ,10 , "blue");
 }
     
-function update(){
+  function update(){
     rectangle(cycle.x, cycle.y, cycle.size, cycle.size, "blue");
     // Öka poängen med 1
     cycle.score ++;
@@ -39,7 +39,7 @@ function update(){
     // Skriven en ny score
     text(20,75, 40, "TRON  |  Score: " + cycle.score, "black");
     //Kontrollera om någon piltangent trycks ned och ändra rikting
-    if (keyboard.left) { cycle.xSpeed = -1; cycle.ySpeed = 0; }
+        if (keyboard.left) { cycle.xSpeed = -1; cycle.ySpeed = 0; }
     if (keyboard.right) { cycle.xSpeed = 1; cycle.ySpeed = 0; }
     if (keyboard.up) { cycle.xSpeed = 0; cycle.ySpeed = -1; }
     if (keyboard.down) { cycle.xSpeed = 0; cycle.ySpeed = 1; }
@@ -49,12 +49,13 @@ function update(){
 
     // Kolla om vi träffat en blått streck, då är spelet slut..
     if (getPixel(cycle.x, cycle.y).blue != 0) {
-        rectangle(cycle.x, cycle.y, cycle.size, cycle.size, "red");
-        alert("Game Over!");
-        stopUpdate();
+      rectangle(cycle.x, cycle.y, cycle.size, cycle.size, "red");
+      alert("Game Over!");
+      stopUpdate();
     }
-}
+  }
             </pre>
+            <p>&nbsp;</p>
             <hr>
         </div>
     </body>

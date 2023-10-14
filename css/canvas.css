@@ -6,11 +6,18 @@ body {
     margin: 0;
     padding-left: 16px;
     padding-right: 16px;
+    /* -webkit-font-smoothing: antialiased; */
 }
 h1#heading {
+    /* font-size: 2.5em; */
     font-family: "LatoWebLight", sans-serif;
+    color: #666666;
 }
-h1, h2 {
+h1 {
+    font-weight: normal;
+}
+h2 {
+    /* font-size: 1.8em; */
     font-weight: normal;
 }
 h3 {
@@ -19,11 +26,17 @@ h3 {
 p {
     line-height: 1.5;
 }
+hr {
+    border: 0;
+    height: 1px;
+    background-color: #c7cdd1;
+}
 pre {
     font-size: 12px;
+    color: #24292e;
     font-family: "Monaco", monospace;
-    background-color: whitesmoke;
-    border: 1px solid silver;
+    background-color: #f5f5f5;
+    border: 1px solid #c7cdd1;
     border-radius: 6px;
     padding: 10px;
 }
@@ -32,11 +45,41 @@ code {
     color: #e0061f;
     font-family: "Monaco", monospace;
     white-space: pre-line;
-    background-color: whitesmoke;
-    border: 1px solid silver;
+    background-color: #f5f5f5;
+    border: 1px solid #c7cdd1;
     border-radius: 6px;
     padding: 3px;
 }
+pre code {
+    color: inherit;
+}
+/*
+pre.vscode {
+    background: none 0% 0% / auto repeat scroll padding-box border-box #ffffff;
+    border: 1px solid #c7cdd1;
+    clear: none;
+    color: #24292e;
+    cursor: auto;
+    direction: ltr;
+    font: 12px / 14.4px Monaco, Menlo, Consolas, 'Courier New', monospace;
+    margin: 0px 0px 12px;
+    padding: 9px;
+    text-align: start;
+    text-decoration: none solid #24292e;
+    text-indent: 0px;
+    white-space: pre-wrap;
+    border-collapse: separate;
+    border-spacing: 0px;
+}
+pre.vscode code {
+    background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0);
+    border: 0px none #24292e;
+    color: #24292e;
+    font: 16px / 19.2px Monaco, Menlo, Consolas, 'Courier New', monospace;
+    margin: 0px;
+    padding: 0px;
+}
+*/
 a {
     color: #57a369;
 }
@@ -60,7 +103,7 @@ div {
 }
 table, td {
     border-collapse: collapse;
-    padding: 2px;
+    line-height: 1.5;
 }
 .border td {
     border: 1px solid black;
@@ -90,4 +133,17 @@ li a {
 }
 li a:hover {
     text-decoration: underline;
+}
+#assignment {
+    margin-left: 0;
+}
+#assignment li {
+    display: inline-block;
+}
+#assignment .header {
+    font-weight: bold;
+    padding-right: 0.5em;
+}
+#assignment .data {
+    padding-right: 2em;
 }

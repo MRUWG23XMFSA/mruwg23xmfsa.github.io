@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="icon" type="image/x-icon" href="/favicon.png">
+        <link rel="stylesheet" href="/css/canvas.css">
+        <script src="/libs/jquery-3.7.1.min.js"></script>
+        <script src="/js/canvas.js"></script>
+    </head>
+    <body>
+        <div id="menu"></div>
+        <div id="content">
+            <h1 id="heading">Lektion 5 - Funktioner</h1>
+            <hr>
+            <h2>Funktioner</h2>
+            <p>En funktion är ett stycke kod som man ger ett namn. Via namnet kan vi anropa funktionen om och om igen. Den stora vinsten är att koden blir kortare och lättare att jobba med. Om jag ser ett behov av att upprepa något så bör jag överväga att skapa en funktion.</p>
+            <p>Funktioner kan ta emot argument som påverkar vad funktionen gör. Funktioner kan även returnera ett resultat, t ex resultatet av en beräkning.</p>
+            <p>&nbsp;</p>
+            <p>I simple.js har vi redan använt färdiga funktioner. Om vi vill rita en cirkel så finns en färdig funktion för att rita en cirkel, vi anropar den så här:</p>
+            <pre>
+circle(100, 200, 20, "blue");
+
+            </pre>
+            <p>Om jag vill rita en cirkel utan att använda <code>simple.js</code> skulle det kunna se ut så här:</p>
+            <pre>
+context2D.fillStyle="blue";
+ context2d.begin2D.beginPath();
+ context2D.arc(100, 200, 20, 0, Math.PI * 2, true);
+ context2D.closePath();
+ context2D.fill();</pre>
+            <p>Om vi vill rita hundra cirklar så är det vettigt att skapa en funktion för detta, annars kan vårt program bli över 600 rader långt.</p>
+            <hr>
+        </div>
+    </body>
+</html>
