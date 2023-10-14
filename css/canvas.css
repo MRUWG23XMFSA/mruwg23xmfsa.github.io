@@ -124,9 +124,6 @@ ul, ol {
     padding: 0;
     margin-left: 25px;
 }
-li {
-    line-height: 1.5em;
-}
 li a {
     display: inline-block;
     text-decoration: none;
