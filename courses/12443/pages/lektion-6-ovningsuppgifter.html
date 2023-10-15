@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="icon" type="image/x-icon" href="/favicon.png">
+        <link rel="stylesheet" href="/css/canvas.css">
+        <script src="/libs/jquery-3.7.1.min.js"></script>
+        <script src="/js/canvas.js"></script>
+    </head>
+    <body>
+        <div id="menu"></div>
+        <div id="content">
+            <h1 id="heading">Lektion 6 - Övningsuppgifter</h1>
+            <hr>
+            <p>Utifrån koden i presentationen (se nedan) skapa en funktion som kan rita en pacman med olika öppning på munnen.</p>
+            <p>Din funktion ska ta emot fyra parametrar, x och y koordinaterna för mittpunkten, radien för cirkelbågen samt ett tal mellan 0 och 1.</p>
+            <p>Den sista parametern är hur öppen munnen ska vara, där 1 representerar fullt öppen och 0 helt stängd.</p>
+            <p>Här är koden från presentationen.</p>
+            <pre style="background: none 0% 0% / auto repeat scroll padding-box border-box #ffffff; border: 1px solid #c7cdd1; clear: none; color: #24292e; cursor: auto; direction: ltr; font: 12px / 14.4px Monaco, Menlo, Consolas, 'Courier New', monospace; margin: 0px 0px 12px; padding: 9px; text-align: start; text-decoration: none solid #24292e; text-indent: 0px; white-space: pre-wrap; border-collapse: separate; border-spacing: 0px;" data-hljs-language="javascript"><code style="background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0); border: 0px none #24292e; font: 16px / 19.2px Monaco, Menlo, Consolas, 'Courier New', monospace; margin: 0px; padding: 0px;"> <span style="border: 0px none #d73a49; color: #d73a49; text-decoration: none solid #d73a49;">var</span> canvas = <span style="border: 0px none #d73a49; color: #d73a49; text-decoration: none solid #d73a49;">document</span>.<span style="border: 0px none #6f42c1; color: #6f42c1; text-decoration: none solid #6f42c1;">getElementById</span>(<span style="border: 0px none #032f62; color: #032f62; text-decoration: none solid #032f62;">"pacmania"</span>);<br> <span style="border: 0px none #d73a49; color: #d73a49; text-decoration: none solid #d73a49;">var</span> context = canvas.<span style="border: 0px none #6f42c1; color: #6f42c1; text-decoration: none solid #6f42c1;">getContext</span>(<span style="border: 0px none #032f62; color: #032f62; text-decoration: none solid #032f62;">"2d"</span>);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br> context.<span>fillStyle</span>=<span style="border: 0px none #032f62; color: #032f62; text-decoration: none solid #032f62;">"Gold"</span><br> context.<span>lineWidth</span> = <span style="border: 0px none #005cc5; color: #005cc5; text-decoration: none solid #005cc5;">5</span>;<br> context.<span style="border: 0px none #6f42c1; color: #6f42c1; text-decoration: none solid #6f42c1;">beginPath</span>();<br> context.<span style="border: 0px none #6f42c1; color: #6f42c1; text-decoration: none solid #6f42c1;">arc</span>(<span style="border: 0px none #005cc5; color: #005cc5; text-decoration: none solid #005cc5;">300</span>, <span style="border: 0px none #005cc5; color: #005cc5; text-decoration: none solid #005cc5;">300</span>, <span style="border: 0px none #005cc5; color: #005cc5; text-decoration: none solid #005cc5;">150</span>, <span style="border: 0px none #005cc5; color: #005cc5; text-decoration: none solid #005cc5;">0.2</span> * <span style="border: 0px none #6f42c1; color: #6f42c1; text-decoration: none solid #6f42c1;">Math</span>.<span>PI</span>, <span style="border: 0px none #005cc5; color: #005cc5; text-decoration: none solid #005cc5;">1.8</span> * <span style="border: 0px none #6f42c1; color: #6f42c1; text-decoration: none solid #6f42c1;">Math</span>.<span>PI</span>);<br> context.<span style="border: 0px none #6f42c1; color: #6f42c1; text-decoration: none solid #6f42c1;">lineTo</span>(<span style="border: 0px none #005cc5; color: #005cc5; text-decoration: none solid #005cc5;">300</span>,<span style="border: 0px none #005cc5; color: #005cc5; text-decoration: none solid #005cc5;">300</span>);<br> context.<span style="border: 0px none #6f42c1; color: #6f42c1; text-decoration: none solid #6f42c1;">stroke</span>();&nbsp;&nbsp;<span style="border: 0px none #6a737d; color: #6a737d; text-decoration: none solid #6a737d;">//Ta bort senare</span><br> context.<span style="border: 0px none #6f42c1; color: #6f42c1; text-decoration: none solid #6f42c1;">fill</span>();<br><code style="background: none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0); border: 0px none #24292e; font: 16px / 19.2px Monaco, Menlo, Consolas, 'Courier New', monospace; margin: 0px; padding: 0px;"> context.<span style="border: 0px none #6f42c1; color: #6f42c1; text-decoration: none solid #6f42c1;">closePath</span>();</code></code></pre>
+            <p>Testa din kod genom att rita några olika pacman</p>
+            <hr>
+        </div>
+    </body>
+</html>

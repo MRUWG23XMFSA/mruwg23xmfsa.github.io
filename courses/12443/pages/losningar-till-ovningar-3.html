@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="icon" type="image/x-icon" href="/favicon.png">
+        <link rel="stylesheet" href="/css/canvas.css">
+        <script src="/libs/jquery-3.7.1.min.js"></script>
+        <script src="/js/canvas.js"></script>
+    </head>
+    <body>
+        <div id="menu"></div>
+        <div id="content">
+            <h1 id="heading">Lösningar till Övningar 3</h1>
+            <hr>
+            <h2>Här är lösningsförslag till några av uppgifterna som hör till lektion 3.</h2>
+            <h2>Tärningen</h2>
+            <p>Rita en tärning med hjälp av en funktion, funktioner gås igenom på lektion 5.</p>
+            <pre>
+function ritaTarning(x,y, varde){
+  // Rita en tärning med övre vänstra hörnet i x,y och en fast storlek på 100 pixlar
+                  
+  // Rita först en svart rektangel sedan en vit strax innanför
+  rectangle(x,y, 100, 100,"black");
+  rectangle(x + 3, y + 3, 94, 94, "white");
+  // Nu ska vi rita olika antal ögon beroende på tärningens värde
+  // Ett öga är en cirkel med radie 5
+  switch (varde){
+    case 1:
+      // Ett ska sitta mitt i tärningen
+      circle(x+50, y + 50, 5 ,"red");
+      break;
+    case 2:
+      // Två prickar i varsitt "hörn"
+      circle(x+75, y + 25, 5 ,"red");
+      circle(x+25, y + 75, 5 ,"red");
+      break;
+    case 3:
+      // Då ska vi rita de prickar som ingår i ett och två
+      circle(x+50, y + 50, 5 ,"red");
+      circle(x+75, y + 25, 5 ,"red");
+      circle(x+25, y + 75, 5 ,"red");
+      break;
+    case 4:
+      // Rita prickar i de fyra hörnen
+      circle(x+75, y + 25, 5 ,"red");
+      circle(x+25, y + 75, 5 ,"red");
+      circle(x+75, y + 75, 5 ,"red");
+      circle(x+25, y + 25, 5 ,"red");
+      break;
+    case 5:
+      // Rita de fyra prickarna för fyra samt en i mitten
+      circle(x+75, y + 25, 5 ,"red");
+      circle(x+25, y + 75, 5 ,"red");
+      circle(x+75, y + 75, 5 ,"red");
+      circle(x+25, y + 25, 5 ,"red");
+      circle(x+50, y + 50, 5 ,"red");
+      break;
+    case 6:
+      // Rita två rader med tre prickar
+      circle(x+75, y + 25, 5 ,"red");
+      circle(x+25, y + 75, 5 ,"red");
+      circle(x+75, y + 75, 5 ,"red");
+      circle(x+25, y + 25, 5 ,"red");
+      circle(x+50, y + 25, 5 ,"red");
+      circle(x+50, y + 75, 5 ,"red");
+  } // end case
+}
+                
+function start(){
+  ritaTarning(20,20,6);
+}</pre>
+            <h2>Strecken</h2>
+            <p>Det krävs egentligen bara en for-loop för det här mönstret.</p>
+            <pre>
+for (var x =0; x&lt;=totalWidth; x+=50) {
+  line(x, 0, totalWidth-x, totalHeight, 2, "black");
+}</pre>
+            <h2>Udda tal till 999</h2>
+            <p>Svårigheten i den här uppgiften är att skriva ut flera rader och kolumner, här är en lösning som kollar om y-värdet når totalHeight, i så fall lägger vi på 40 pixlar i x-led och nollställer y för att börja på ny kolumn.</p>
+            <pre>
+// Skriv ut alla udda tal mellan 1 och 999.
+// Utmaningen blir att få alla tal och synas.
+    var x = 10;
+    var y = 0
+for (i=1; i&lt;1000; i+=2){
+    y+=15
+    text(x, y, 10 , i, "black");
+    if (y&gt;= totalHeight - 15) {
+      x+=40;
+      y=0;
+    }
+  }</pre>
+            <h2>Baklänges sträng</h2>
+            <pre>
+
+  namn = "Peter";
+  back = ""  // Tom sträng
+  //Vänd på en sträng med hjälp av en for-sats som räknar nedåt
+  for (var i =namn.length ; i&gt;=0; i--){
+    back = back + namn.charAt(i);
+  } 
+  text(10,100, 50, namn, "black");
+  text(10,170, 50, back, "red"); </pre>
+            <h2>Ritprogram</h2>
+            <p>En start på ett ritprogram som fungerar lite annorlunda än i uppgiften, saknar reaktion på musklick</p>
+            <pre>
+  // Enkelt "rit"-program. Saknar sudd.
+
+var storlek = 10
+var farg = "red"
+                
+function update()
+  { 
+    circle(mouse.x, mouse.y, storlek, farg);
+                    
+  if(keyboard.zero) {storlek = 10}
+  if(keyboard.one) {storlek = 20}
+                    
+  // X för att avbryta
+    if (keyboard.x) {stopUpdate()}
+  // Växla färg
+  if(keyboard.q) {farg = "red"}  
+  if(keyboard.w) {farg = "orange"}
+                  
+  }</pre>
+            <hr>
+        </div>
+    </body>
+</html>

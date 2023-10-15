@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="icon" type="image/x-icon" href="/favicon.png">
+        <link rel="stylesheet" href="/css/canvas.css">
+        <script src="/libs/jquery-3.7.1.min.js"></script>
+        <script src="/js/canvas.js"></script>
+    </head>
+    <body>
+        <div id="menu"></div>
+        <div id="content">
+            <h1 id="heading">Lösningar - Övningar till lektion 4</h1>
+            <hr>
+            <h2>Ett program som löser flera av problemen i övningarna</h2>
+            <pre>
+let namn = "Musse Pigg";
+
+// Längden av en sträng
+let längd = namn.length;
+              
+// Skriv ut längden med en förklarande text
+// Konkatenera (slår ihop) flera strängar
+let output = namn + " har " + längd + " bokstäver";
+text(25, 25, 20, output, "black");
+              
+// Om en sträng är tom så är längden noll
+let tom = ""
+if (tom.length == 0){
+  text (22, 50, 20, "Strängen är tom", "black");
+  }
+                
+ //Förvandla strängen till versaler
+ stor = namn.toUpperCase();
+ text (25, 75, 20, stor, "black");
+// Lägga till strängen tre gånger med en for loop
+  let longName = "";
+  for (i = 1; i &lt;=3; i++) {
+    longName += namn;
+  }
+              
+  text (25, 100, 20, longName, "black"); </pre>
+            <h2>Skriva ut initialer</h2>
+            <pre>
+/* Skriv ut användarens initialer, i en enklare variant kan man fråga efter förnamn
+och efternamn i varsin prompt. I den här lösningen måste vi dela på namnet.
+Programmet fungerar inte om användaren börjar sitt namn med ett mellanslag...
+*/
+  
+let namn = prompt("Vad heter du (för och efternamn)?");
+  // Dela på för och efternamn vi antar att det finns ett mellanslag där vi ska dela
+  // Resultatet blir en lista där förnamnet ligger i position 0 och efternamnet i position 1
+let splitted=namn.split(" ");
+let fornamn = splitted[0];
+let efternamn = splitted[1];
+  //Initialerna tar vi som den första bokstaven ur förnamn och efternamn.  
+let initialer = fornamn[0] + efternamn[0];
+text(10,20,15,initialer,"black");</pre>
+            <hr>
+        </div>
+    </body>
+</html>
